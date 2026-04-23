@@ -6,3 +6,19 @@
 body{
     background-color: #501aae;
 }
+img {
+    width: 60px;
+    height: 60px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: aquamarine;
+}
+.text{
+    font-size: 40px;
+}
