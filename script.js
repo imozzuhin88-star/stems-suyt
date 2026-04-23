@@ -1,7 +1,7 @@
 
 let cards = document.querySelector('.cards');
 
-let pics = ['Header_1.jpg', 'images.jpg',"images (1).jpg"];
+let pics = ['Header_1.jpg', 'gaben-steam.gif',"imp2w2xo.jpg","jesus-loves-you-te-ama.gif"];
 let texts = [
   'Стим 2.0: Новая эра цифровой дистрибуции\n' +
     '\n' +
@@ -31,7 +31,7 @@ let texts = [
     '\n' +
     'Игры с тегом AVAILABLE NOW получат значок «Being at it» (В процессе), что означает полную совместимость с архитектурой 2.0.\n' +
     '\n' +
-    'Релиз ожидается уже этим летом. Главное, чтобы вместе с пакетами не пришлось устанавливать все окружения рабочего стола GNOME.',
+    'Релиз ожидается уже этим летом. Главное, чтобы вместе с пакетами не пришлось устанавливать все окружения рабочего стола GNOME.',''
 ];
 
 for (let i = 0; i < pics.length; i += 1) {

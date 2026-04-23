@@ -1,13 +1,13 @@
 .cards{
     display: grid;
-      grid-template-columns:repeat(3, 1fr);
+      grid-template-columns:repeat(4, 1fr);
     grid-template-rows:repeat(2, 1fr);
 }
 body{
     background-color: #501aae;
 }
 img {
-    width: 550px;
+    width: 650px;
     height: 550px;
 }
 
@@ -22,4 +22,7 @@ img {
 }
 .text{
     font-size: 40px;
+}
+.text{
+    font-family: 'Inter', sans-serif;
 }
