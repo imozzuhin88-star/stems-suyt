@@ -7,8 +7,8 @@ body{
     background-color: #501aae;
 }
 img {
-    width: 60px;
-    height: 60px;
+    width: 550px;
+    height: 550px;
 }
 
 .card {
@@ -16,8 +16,9 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    background-color: aquamarine;
+    gap: 50px;
+    background-color: #fa0e0e;
+    padding: 100px;
 }
 .text{
     font-size: 40px;
