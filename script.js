@@ -1,7 +1,7 @@
-let container = document.querySelector('.container');
+
 let cards = document.querySelector('.cards');
 
-let pics = ['Header_1jpg.', 'images.jpg',"images(1).jpg"];
+let pics = ['Header_1.jpg', 'images.jpg',"images (1).jpg"];
 let texts = ['untitled', 'untitled'];
 
 for (let i = 0; i < pics.length; i += 1) {
