@@ -17,12 +17,18 @@ img {
     align-items: center;
     justify-content: center;
     gap: 50px;
-    background-color: #fa0e0e;
+
     padding: 100px;
 }
 .text{
-    font-size: 40px;
+    font-size: 200px;
 }
 .text{
     font-family: 'Inter', sans-serif;
+}
+.menu{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+     color: #ffa403;
 }
