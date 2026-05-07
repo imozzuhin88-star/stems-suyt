@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<div class="glass-nav">...</div>
-<main class="container">...</main>
-<footer class="footer">...</footer>
 
+<body>
+<div class="glass-nav"></div>
+<main class="container"></main>
+<footer class="footer"></footer>
+
+<div id="about-page" class="page">
+    <div class="hero"><h1> платформа Steam 2.0</h1></div>
+    <div class="features"></div>
+</div>
+</main>
+
+<div class="game-card">
+    <div class="game-icon"><i class="fas fa-robot"></i></div>
+</div>
+<main class="container">
 
 <div class="logo">
     <i class="fab fa-steam"></i>
@@ -17,34 +28,77 @@
 
 <ul class="nav-links">
     <li><a href="#" data-page="home">Магазин</a></li>
-    <li><a href="#" data-page="about">О нас</a></li>
+    <li><a href="index2..html" data-page="about">О нас</a></li>
 </ul>
 
 
-<div class="game-card">
-    <div class="game-icon"><i class="fas fa-robot"></i></div>
-    <h3>CyberPulse 2078</h3>
-    <p>Описание игры...</p>
-</div>
-<main class="container">
+
 
     <div id="home-page" class="page active-page">
         <div class="hero"><h1>Следующий уровень игр</h1></div>
-        <div class="search-bar">< input type="text" id="gameSearch" placeholder="🔍 Поиск..."></div>
+        <div class="search-bar"></div>
         <div class="games-grid" id="gamesContainer"></div>
     </div>
-
-    <div id="about-page" class="page">
-        <div class="hero"><h1>О платформе Steam 2.0</h1></div>
-        <div class="features">...</div>
+    <div class="filters">
+        <button class="filter-btn active">Все игры</button>
+        <button class="filter-btn">🔥 Хиты</button>
+        <button class="filter-btn">🐉 RPG</button>
+        <button class="filter-btn">⚡ Экшен</button>
+        <button class="filter-btn">🛡️ Инди</button>
     </div>
-</main>
+    <div class="game-grid">
+        <!-- DUYGGEDEFENDERS -->
+        <div class="card">
+            <img src="https://placehold.co/60x60/2a5f5a/ccffdd?text=D" alt="DUYGGEDEFENDERS">
+            <div class="game-title">DUYGGEDEFENDERS</div>
+            <div class="game-tags"><span class="tag">Tower defense</span><span class="tag">Кооператив</span></div>
+            <div class="price">499 ₽</div>
+        </div>
 
 <div id="toast" class="toast"><i class="fas fa-info-circle"></i> <span id="toastMsg"></span></div>
+        <div class="card">
+            <img src="https://placehold.co/60x60/452a6e/e2b0ff?text=DA" alt="DUNGEON AWAKENING">
+            <div class="game-title">DUNGEON AWAKENING</div>
+            <div class="game-tags"><span class="tag">Рогалик</span><span class="tag">Подземелья</span></div>
+            <div class="price">799 ₽</div>
+        </div>
 
+        <div class="flatbub-integration">
+            <div class="flatbub-logo">
+                <span>🟢 Steam 2.0</span> ✦ <span>📦 Flatbub Core</span>
+            </div>
+            <div class="status">
+                ✅ Мгновенные обновления · Атомарные рантаймы · Без мусора
+            </div>
+            <div class="status">
+                🎮 Доступно на всех платформах
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://placehold.co/60x60/3e6b2f/b8ffa0?text=K" alt="THE KERNS">
+            <div class="game-title">THE KERNS</div>
+            <div class="game-tags"><span class="tag">Стратегия</span><span class="tag">Клановые войны</span></div>
+            <div class="price">349 ₽</div>
+        </div>
+        <div class="card">
+            <img src="https://placehold.co/60x60/8b3c2c/ffb08c?text=W" alt="WOLFEN">
+            <div class="game-title">WOLFEN</div>
+            <div class="game-tags"><span class="tag">Шутер</span><span class="tag">Хоррор</span></div>
+            <div class="price">1199 ₽</div>
+        </div>
+        <div class="card">
+            <img src="https://placehold.co/60x60/b54d3a/ffe0b3?text=LM" alt="LOADS OF MAYHEM">
+            <div class="game-title">LOADS OF MAYHEM</div>
+            <div class="game-tags"><span class="tag">Экшен</span><span class="tag">Разрушения</span></div>
+            <div class="price">649 ₽</div>
+        </div>
 
-<button id="betaSubmitBtn">Вступить</button>
-
+        <footer>
+            «Steam 2.0» — следующее поколение. Спасибо сообществу и Гейбу Ньюэллу за вдохновение.<br>
+            Все игры представлены в демонстрационном каталоге.
+        </footer>
+    </div>
+</main>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 </body>
