@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 0 32px;
 }
+
 .nav-links{
     gap: 20px;
     background: linear-gradient(145deg, #16212b, #0f1722);
@@ -50,7 +51,7 @@
     }
 
     .filter-btn {
-        background: #226ac5;
+        background: #6e0fdb;
         border: none;
         color: #bf1a1a;
         padding: 0.5rem 1.2rem;
@@ -59,11 +60,14 @@
         cursor: pointer;
         transition: all 0.2s;
         font-size: 0.85rem;
+        justify-content: flex-start;
+        position: relative;
+        left: -165px;
     }
 
     .filter-btn.active {
-        background: #2a6b5e;
-        color: white;
+        background: #501aae;
+        color: #fa0e0e;
         box-shadow: 0 0 8px #2a6b5e;
     }
 
@@ -175,3 +179,82 @@
         color: #eef2ff;
         padding: 2rem 1.5rem;
     }
+.features-small {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 1rem 0 1.5rem 0;
+    background: rgba(10, 20, 30, 0.5);
+    border-radius: 28px;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(102, 192, 255, 0.2);
+}
+
+.feature-small {
+    flex: 1;
+    min-width: 130px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 18px;
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.feature-small:hover {
+    background: rgba(102, 192, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.feat-icon-small {
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+}
+
+.feature-small h4 {
+    font-size: 0.8rem;
+    margin: 0.3rem 0;
+    color: #66c0ff;
+}
+
+.feature-small p {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    margin: 0;
+    line-height: 1.3;
+}
+.cl1{
+    color: #eef2ff;
+    text-decoration: none;
+    font-size: 16px;
+}
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #66e0ff, #c05eff, #ff8c5a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+}
+.sub {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+.gabes-thanks {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(6px);
+    border-radius: 40px;
+    padding: 0.4rem 1.2rem;
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    border: 1px solid rgba(102,224,255,0.3);
+}
