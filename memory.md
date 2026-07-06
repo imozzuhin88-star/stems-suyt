@@ -6,7 +6,7 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 
 ## Current Pages
 
-- `index.html`: Steam-inspired main landing page with a top bar, featured showcase, recommendation cards, update feed, and links to analytics/social features.
+- `index.html`: Steam-inspired main landing page with a top bar, featured showcase, recommendation cards, update feed, links to analytics/social features, and the shared header background palette menu.
 - `index2..html`: redesigned static information page about the platform, Flatbub Core, compatibility, analytics, social features, and development plan.
 - `shop.html`: Steam-like store catalog shown as full-width game rows with real Steam game names, Steam CDN capsule covers, filters, prices, and Flatbub Core status.
 - `cart.html`: Steam-like cart page that renders games saved from the store, shows total price, bonus card progress, removal controls, and checkout state.
@@ -18,9 +18,9 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 
 ## Active Files
 
-- `style.css`: shared Steam-inspired styling for all active pages, including analytics panels, charts, existing-community/chat pages, store list rows, and the global background.
+- `style.css`: shared Steam-inspired styling for all active pages, including analytics panels, charts, existing-community/chat pages, store list rows, hover animations, holiday background animation scenes, and the animated global background.
 - `style2.css`: compatibility stylesheet that imports `style.css`.
-- `script.js`: analytics result handler, store filtering, localStorage-backed cart, and localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress saving.
+- `script.js`: analytics result handler, saved background theme palette, saved background animation scene, motion toggle, store filtering, localStorage-backed cart, and localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress saving.
 - `.codex/skills/stems-suyt/`: local project skill and reference notes for future Codex work.
 
 ## Project Rules
@@ -53,3 +53,7 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 - Added `library.html` and library interactions: game selection, search, play state, favorites, activity entries, and saved notes.
 - Expanded `shop.html` with additional games from the Steam library reference screenshot, including Morrowind, Fallout: New Vegas, Fallout 4, Fallout 76, Phasmophobia, Dead by Daylight, Borderlands 2, Sea of Thieves, Death Stranding Director's Cut, and SCP: Secret Laboratory.
 - Improved the global site background with layered Steam-like grid, diagonal light bands, and darker edge depth.
+- Moved the background palette controls into a compact shared header dropdown, softened the hover animations, and added a saved background animation on/off toggle.
+- Added generated animation-scene controls to the header dropdown: waves, winter trees, Halloween pumpkins, Easter eggs, and arcade/random movement.
+- Disabled interface animations inside the library page while keeping its interactions.
+- Fixed background scene visibility by placing `body::before` and `body::after` above the base body background while keeping page content on a higher z-index.

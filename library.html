@@ -6,7 +6,7 @@
   <title>Библиотека | Steam 2.0</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="library-static">
   <header class="steam-topbar">
     <a class="brand" href="index.html">STEAM 2.0</a>
     <nav class="main-nav">
@@ -18,7 +18,25 @@
       <a class="active-link" href="library.html">Библиотека</a>
       <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
     </nav>
-    <a class="install-link" href="shop.html">Открыть магазин</a>
+    <div class="topbar-actions">
+      <a class="install-link" href="shop.html">Открыть магазин</a>
+      <details class="theme-menu">
+        <summary>Фон Steam 2.0</summary>
+        <div class="theme-popover">
+          <div class="theme-picker" aria-label="Выбор цветовой палитры фона">
+            <button class="theme-swatch steam" type="button" data-theme-option="steam" aria-label="Синяя палитра Steam"></button>
+            <button class="theme-swatch neon" type="button" data-theme-option="neon" aria-label="Неоновая палитра"></button>
+            <button class="theme-swatch forest" type="button" data-theme-option="forest" aria-label="Зелёная палитра"></button>
+            <button class="theme-swatch ember" type="button" data-theme-option="ember" aria-label="Тёплая палитра"></button>
+            <button class="theme-swatch violet" type="button" data-theme-option="violet" aria-label="Фиолетовая палитра"></button>
+          </div>
+          <label class="theme-motion-toggle">
+            <input type="checkbox" data-motion-toggle checked>
+            <span>Анимация фона</span>
+          </label>
+        </div>
+      </details>
+    </div>
   </header>
 
   <main class="library-page">

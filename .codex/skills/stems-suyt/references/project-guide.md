@@ -12,7 +12,7 @@
 
 The active hand-built site is the root-level static app:
 
-- `index.html`: Steam-inspired main Steam 2.0 landing page. Links `style.css`.
+- `index.html`: Steam-inspired main Steam 2.0 landing page with the shared header background palette menu. Links `style.css` and `script.js`.
 - `index2..html`: redesigned static about/information page. Links `style.css`.
 - `shop.html`: fixed Steam-like store page with interactive filters, 23 full-width game rows, real Steam games, Steam CDN capsule covers, prices, add-to-cart controls, and Flatbub integration. Links `style.css` and `script.js`.
 - `cart.html`: Steam-like cart page that reads saved store selections from localStorage, shows selected games, total price, bonus-card progress, removal controls, and checkout state. Links `style.css` and `script.js`.
@@ -21,9 +21,9 @@ The active hand-built site is the root-level static app:
 - `social.html`: Steam-like community activity hub without fake friend activity. It creates and lists only user-created communities from browser storage. Links `style.css` and `script.js`.
 - `community.html`: dynamic separate community room opened by `?id=...`; each community keeps its own chat, member count, and progress checklist in localStorage. Links `style.css` and `script.js`.
 - `community-created.html`: legacy compatibility page that redirects to `social.html`. Current navigation should prefer `social.html` and `community.html`.
-- `style.css`: shared Steam-inspired styling for nav, global background, hero panels, store list rows, information sections, analytics charts/forms, and community/chat panels.
+- `style.css`: shared Steam-inspired styling for nav, animated global background, holiday/random background scenes, hover motion, hero panels, store list rows, information sections, analytics charts/forms, and community/chat panels.
 - `style2.css`: compatibility stylesheet importing `style.css`.
-- `script.js`: analytics result handling, interactive store filters, localStorage-backed cart, interactive library state, localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress handling.
+- `script.js`: saved background theme palette, generated background scene controls, saved background motion toggle, analytics result handling, interactive store filters, localStorage-backed cart, interactive library state, localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress handling.
 
 Media assets at the root include `Header_1.jpg`, `gaben-steam.gif`, `imp2w2xo.jpg`, `jesus-loves-you-te-ama.gif`, `images.jpg`, and `images (1).jpg`.
 
@@ -69,7 +69,11 @@ Do not spend time refactoring these unless the user asks about the Vite starter,
 The project is a playful dark Steam 2.0 / Flatbub game-store concept inspired by Steam:
 
 - Dark blue/charcoal interface with blue gradients, compact top navigation, showcase panels, store list rows, charts, community panels, and update feeds.
-- Global background uses layered dark gradients, subtle grid lines, and diagonal light bands; avoid decorative blobs/orbs.
+- Global background uses animated layered dark gradients, subtle grid lines, and diagonal light bands; avoid decorative blobs/orbs.
+- Active pages include a compact header dropdown for Steam, neon, forest, ember, and violet themes. The selected theme is stored in localStorage under `steam2Theme` and applies through `body[data-theme]`.
+- The header dropdown also includes generated background animation scene buttons. The selected scene is stored under `steam2Scene` and applies through `body[data-scene]`.
+- The header dropdown includes a saved background animation toggle. It stores `on` or `off` in localStorage under `steam2Motion` and applies `body.motion-off` when disabled.
+- `library.html` uses `body.library-static` to keep library interactions working without the added interface motion.
 - Store games should feel like Steam list rows: real image cover/capsule on the left, title/tags in the middle, price/status on the right. Avoid fake names, random local images, and letter-only placeholder covers.
 - Feature sections cover updates, Flatbub Core, cross-platform support, Steam Deck/Linux/PC, user analytics, and community creation/chat.
 - Keep the tone energetic and game-store-like unless the user asks for a cleaner redesign.

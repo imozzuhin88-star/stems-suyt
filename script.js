@@ -1,3 +1,93 @@
+const themeStorageKey = 'steam2Theme';
+const motionStorageKey = 'steam2Motion';
+const sceneStorageKey = 'steam2Scene';
+
+const sceneOptions = [
+  { id: 'waves', label: 'Волны' },
+  { id: 'winter', label: 'Елки' },
+  { id: 'halloween', label: 'Тыквы' },
+  { id: 'easter', label: 'Пасха' },
+  { id: 'arcade', label: 'Аркада' },
+];
+
+function applyTheme(theme) {
+  const nextTheme = theme || 'steam';
+  document.body.dataset.theme = nextTheme;
+  document.querySelectorAll('[data-theme-option]').forEach(button => {
+    button.classList.toggle('active', button.dataset.themeOption === nextTheme);
+  });
+}
+
+applyTheme(localStorage.getItem(themeStorageKey) || 'steam');
+
+function renderSceneControls() {
+  document.querySelectorAll('.theme-popover').forEach(popover => {
+    if (popover.querySelector('.scene-picker')) {
+      return;
+    }
+
+    const scenePicker = document.createElement('div');
+    scenePicker.className = 'scene-picker';
+    scenePicker.setAttribute('aria-label', 'Выбор стиля фоновой анимации');
+    scenePicker.innerHTML = `
+      <span>Стиль анимации</span>
+      <div class="scene-options">
+        ${sceneOptions
+          .map(
+            scene =>
+              `<button class="scene-option" type="button" data-scene-option="${scene.id}">${scene.label}</button>`,
+          )
+          .join('')}
+      </div>
+    `;
+
+    popover.insertBefore(scenePicker, popover.querySelector('.theme-motion-toggle'));
+  });
+}
+
+function applyScene(scene) {
+  const nextScene = sceneOptions.some(option => option.id === scene) ? scene : 'waves';
+  document.body.dataset.scene = nextScene;
+  document.querySelectorAll('[data-scene-option]').forEach(button => {
+    button.classList.toggle('active', button.dataset.sceneOption === nextScene);
+  });
+}
+
+renderSceneControls();
+applyScene(localStorage.getItem(sceneStorageKey) || 'waves');
+
+function applyMotionPreference(value) {
+  const motionEnabled = value !== 'off';
+  document.body.classList.toggle('motion-off', !motionEnabled);
+  document.querySelectorAll('[data-motion-toggle]').forEach(toggle => {
+    toggle.checked = motionEnabled;
+  });
+}
+
+applyMotionPreference(localStorage.getItem(motionStorageKey) || 'on');
+
+document.querySelectorAll('[data-theme-option]').forEach(button => {
+  button.addEventListener('click', () => {
+    localStorage.setItem(themeStorageKey, button.dataset.themeOption);
+    applyTheme(button.dataset.themeOption);
+  });
+});
+
+document.querySelectorAll('[data-scene-option]').forEach(button => {
+  button.addEventListener('click', () => {
+    localStorage.setItem(sceneStorageKey, button.dataset.sceneOption);
+    applyScene(button.dataset.sceneOption);
+  });
+});
+
+document.querySelectorAll('[data-motion-toggle]').forEach(toggle => {
+  toggle.addEventListener('change', () => {
+    const nextValue = toggle.checked ? 'on' : 'off';
+    localStorage.setItem(motionStorageKey, nextValue);
+    applyMotionPreference(nextValue);
+  });
+});
+
 const analyticsForm = document.querySelector('#analyticsForm');
 
 if (analyticsForm) {
