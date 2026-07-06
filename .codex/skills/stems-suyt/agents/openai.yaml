@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stems SUYT"
+  short_description: "Work confidently inside the stems-suyt project"
+  default_prompt: "Use $stems-suyt to inspect the project and make a focused frontend change."
