@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аналитика | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a class="active-link" href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="shop.html">Установить</a>
+  </header>
+
+  <main class="page-shell analytics-page">
+    <section class="analytics-hero">
+      <div>
+        <span class="eyebrow">Итоги года</span>
+        <h1>Твой Steam 2.0 Wrapped</h1>
+        <p>
+          Личная аналитика собирает год в играх: во что ты играл чаще всего,
+          сколько потратил, какие жанры выбирал и насколько твой стиль
+          отличается от среднего игрока платформы.
+        </p>
+      </div>
+      <div class="wrapped-card">
+        <span>2026 Wrapped</span>
+        <strong>312 часов</strong>
+        <p>в играх за год</p>
+        <div class="wrapped-rank">Топ 8% активных игроков</div>
+      </div>
+    </section>
+
+    <section class="analytics-summary">
+      <article>
+        <span>Любимая игра</span>
+        <strong>Baldur's Gate 3</strong>
+        <p>84 часа, 19 запусков</p>
+      </article>
+      <article>
+        <span>Главный жанр</span>
+        <strong>RPG</strong>
+        <p>38% всего времени</p>
+      </article>
+      <article>
+        <span>Потрачено</span>
+        <strong>6 940 RUB</strong>
+        <p>на 9 покупок</p>
+      </article>
+      <article>
+        <span>Серия года</span>
+        <strong>5 дней подряд</strong>
+        <p>самая длинная игровая серия</p>
+      </article>
+    </section>
+
+    <section class="analytics-panel custom-analytics-panel">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">Своя аналитика</span>
+          <h2>Напиши свои данные и получи результат</h2>
+        </div>
+      </div>
+      <form id="analyticsForm" class="analytics-input-form">
+        <label>
+          Часы в играх
+          <input id="hoursInput" type="number" value="120" min="0">
+        </label>
+        <label>
+          Потрачено, RUB
+          <input id="spendInput" type="number" value="4200" min="0">
+        </label>
+        <label>
+          Куплено игр
+          <input id="gamesInput" type="number" value="6" min="0">
+        </label>
+        <label>
+          Любимый жанр
+          <input id="genreInput" type="text" value="RPG">
+        </label>
+        <button type="submit">Посчитать результат</button>
+      </form>
+      <div id="analyticsResult" class="analytics-result">
+        Введи свои данные и нажми кнопку, чтобы получить персональный вывод.
+      </div>
+    </section>
+
+    <section class="analytics-layout">
+      <article class="analytics-panel spend-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Траты</span>
+            <h2>По месяцам</h2>
+          </div>
+          <strong>6 940 RUB</strong>
+        </div>
+        <div class="bar-chart monthly-chart" aria-label="График трат по месяцам">
+          <div style="--value: 28"><span>Янв</span><strong>420</strong></div>
+          <div style="--value: 46"><span>Фев</span><strong>690</strong></div>
+          <div style="--value: 20"><span>Мар</span><strong>300</strong></div>
+          <div style="--value: 72"><span>Апр</span><strong>1080</strong></div>
+          <div style="--value: 38"><span>Май</span><strong>570</strong></div>
+          <div style="--value: 88"><span>Июн</span><strong>1320</strong></div>
+          <div style="--value: 34"><span>Июл</span><strong>510</strong></div>
+          <div style="--value: 62"><span>Авг</span><strong>930</strong></div>
+          <div style="--value: 26"><span>Сен</span><strong>390</strong></div>
+          <div style="--value: 54"><span>Окт</span><strong>810</strong></div>
+          <div style="--value: 14"><span>Ноя</span><strong>210</strong></div>
+          <div style="--value: 48"><span>Дек</span><strong>720</strong></div>
+        </div>
+      </article>
+
+      <article class="analytics-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Жанры</span>
+            <h2>Куда ушел бюджет</h2>
+          </div>
+        </div>
+        <div class="genre-list">
+          <div>
+            <span>RPG</span>
+            <div><i style="width: 38%"></i></div>
+            <strong>38%</strong>
+          </div>
+          <div>
+            <span>Экшен</span>
+            <div><i style="width: 24%"></i></div>
+            <strong>24%</strong>
+          </div>
+          <div>
+            <span>Стратегии</span>
+            <div><i style="width: 18%"></i></div>
+            <strong>18%</strong>
+          </div>
+          <div>
+            <span>Инди</span>
+            <div><i style="width: 12%"></i></div>
+            <strong>12%</strong>
+          </div>
+          <div>
+            <span>Хоррор</span>
+            <div><i style="width: 8%"></i></div>
+            <strong>8%</strong>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="analytics-panel comparison-panel">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">Сравнение</span>
+          <h2>Ты и средний игрок Steam 2.0</h2>
+        </div>
+      </div>
+      <div class="comparison-grid">
+        <article>
+          <span>Часы за год</span>
+          <div class="compare-bars">
+            <div><b style="width: 78%"></b><small>Ты: 312 ч</small></div>
+            <div><b style="width: 44%"></b><small>Среднее: 176 ч</small></div>
+          </div>
+        </article>
+        <article>
+          <span>Покупки</span>
+          <div class="compare-bars">
+            <div><b style="width: 60%"></b><small>Ты: 9 игр</small></div>
+            <div><b style="width: 46%"></b><small>Среднее: 7 игр</small></div>
+          </div>
+        </article>
+        <article>
+          <span>Средний чек</span>
+          <div class="compare-bars">
+            <div><b style="width: 64%"></b><small>Ты: 771 RUB</small></div>
+            <div><b style="width: 52%"></b><small>Среднее: 625 RUB</small></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrapped-feed">
+      <article>
+        <span>Момент года</span>
+        <h3>Самый поздний запуск: 02:41</h3>
+        <p>Cyberpunk 2077 стал твоей ночной игрой октября.</p>
+      </article>
+      <article>
+        <span>Открытие года</span>
+        <h3>THE KERNS</h3>
+        <p>Ты вернулся к стратегиям и провел 41 час в клановых войнах.</p>
+      </article>
+      <article>
+        <span>Совет платформы</span>
+        <h3>Больше инди в следующем году</h3>
+        <p>Средний игрок Steam 2.0 пробует на 35% больше коротких проектов.</p>
+      </article>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

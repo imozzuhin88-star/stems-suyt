@@ -1,127 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div class="glass-nav"></div>
-<main class="container"></main>
-<footer class="footer"></footer>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a class="active-link" href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="shop.html">Установить</a>
+  </header>
 
-<div id="about-page" class="page">
-    <div class="hero"><h1> платформа Steam 2.0</h1></div>
-    <div class="features"></div>
-</div>
-
-<div class="features-small">
-    <div class="feature-small">
-        <div class="feat-icon-small">⚡</div>
-        <h4>Мгновенные обновления</h4>
-        <p>Атомарные рантаймы</p>
-    </div>
-    <div class="feature-small">
-        <div class="feat-icon-small">📦</div>
-        <h4>Flatbub Core</h4>
-        <p>Без мусора</p>
-    </div>
-    <div class="feature-small">
-        <div class="feat-icon-small">🌍</div>
-        <h4>Кроссплатформа</h4>
-        <p>Steam Deck / Linux / PC</p>
-    </div>
-    <div class="feature-small">
-        <div class="feat-icon-small">🎮</div>
-        <h4>Игры без границ</h4>
-        <p>Один каталог</p>
-    </div>
-</div>
-
-<div class="game-card">
-    <div class="game-icon"><i class="fas fa-robot"></i></div>
-</div>
-<main class="container">
-
-<div class="logo">
-    <i class="fab fa-steam"></i>
-    <span>STEAM 2.0</span>
-</div>
-
-<ul class="nav-links">
-    <li><a class="cl1" href="#" data-page="home">Магазин</a></li>
-    <li><a class="cl1" href="index2..html" data-page="about">О нас</a></li>
-</ul>
-
-
-
-
-    <div id="home-page" class="page active-page">
-        <div class="hero"><h1>Следующий уровень игр</h1></div>
-        <div class="search-bar"></div>
-        <div class="games-grid" id="gamesContainer"></div>
-    </div>
-    <div class="filters">
-        <button class="filter-btn active">Все игры</button>
-        <button class="filter-btn">🔥 Хиты</button>
-        <button class="filter-btn">🐉 RPG</button>
-        <button class="filter-btn">⚡ Экшен</button>
-        <button class="filter-btn">🛡️ Инди</button>
-    </div>
-    <div class="game-grid">
-        <!-- DUYGGEDEFENDERS -->
-        <div class="card">
-            <img src="https://placehold.co/60x60/2a5f5a/ccffdd?text=D" alt="DUYGGEDEFENDERS">
-            <div class="game-title">DUYGGEDEFENDERS</div>
-            <div class="game-tags"><span class="tag">Tower defense</span><span class="tag">Кооператив</span></div>
-            <div class="price">499 ₽</div>
+  <main class="page-shell">
+    <section class="home-hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Новая витрина Steam 2.0</span>
+        <h1>Игры, обновления и библиотека в одном живом интерфейсе</h1>
+        <p>
+          Steam 2.0 берет знакомую структуру магазина Steam: крупная витрина,
+          быстрый каталог, рекомендации и новости, но добавляет Flatbub Core
+          для чистых установок и атомарных обновлений.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="shop.html">Перейти в магазин</a>
+          <a class="secondary-link" href="social.html">Сообщество</a>
         </div>
+      </div>
 
-<div id="toast" class="toast"><i class="fas fa-info-circle"></i> <span id="toastMsg"></span></div>
-        <div class="card">
-            <img src="https://placehold.co/60x60/452a6e/e2b0ff?text=DA" alt="DUNGEON AWAKENING">
-            <div class="game-title">DUNGEON AWAKENING</div>
-            <div class="game-tags"><span class="tag">Рогалик</span><span class="tag">Подземелья</span></div>
-            <div class="price">799 ₽</div>
+      <div class="hero-showcase">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/library_hero.jpg" alt="Cyberpunk 2077">
+        <div class="showcase-panel">
+          <span>Сейчас в центре внимания</span>
+          <strong>Cyberpunk 2077</strong>
+          <p>RPG, открытый мир, киберпанк и плотная Steam-витрина.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="flatbub-integration">
-            <div class="flatbub-logo">
-                <span>🟢 Steam 2.0</span> ✦ <span>📦 Flatbub Core</span>
-            </div>
-            <div class="status">
-                ✅ Мгновенные обновления · Атомарные рантаймы · Без мусора
-            </div>
-            <div class="status">
-                🎮 Доступно на всех платформах
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://placehold.co/60x60/3e6b2f/b8ffa0?text=K" alt="THE KERNS">
-            <div class="game-title">THE KERNS</div>
-            <div class="game-tags"><span class="tag">Стратегия</span><span class="tag">Клановые войны</span></div>
-            <div class="price">349 ₽</div>
-        </div>
-        <div class="card">
-            <img src="https://placehold.co/60x60/8b3c2c/ffb08c?text=W" alt="WOLFEN">
-            <div class="game-title">WOLFEN</div>
-            <div class="game-tags"><span class="tag">Шутер</span><span class="tag">Хоррор</span></div>
-            <div class="price">1199 ₽</div>
-        </div>
-        <div class="card">
-            <img src="https://placehold.co/60x60/b54d3a/ffe0b3?text=LM" alt="LOADS OF MAYHEM">
-            <div class="game-title">LOADS OF MAYHEM</div>
-            <div class="game-tags"><span class="tag">Экшен</span><span class="tag">Разрушения</span></div>
-            <div class="price">649 ₽</div>
-        </div>
+    <section class="steam-strip" aria-label="Быстрые преимущества">
+      <article>
+        <span>01</span>
+        <strong>Единый каталог</strong>
+        <p>Игры, новости и статусы совместимости находятся рядом.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <strong>Flatbub Core</strong>
+        <p>Установка без лишних зависимостей и мусора после удаления.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <strong>Steam Deck Ready</strong>
+        <p>Карточки сразу показывают, где игра запускается лучше всего.</p>
+      </article>
+    </section>
 
-        <footer>
-            «Steam 2.0» — следующее поколение. Спасибо сообществу и Гейбу Ньюэллу за вдохновение.<br>
-            Все игры представлены в демонстрационном каталоге.
-        </footer>
-    </div>
-</main>
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+    <section class="section-head">
+      <div>
+        <span class="eyebrow">Рекомендации</span>
+        <h2>Популярное и новое</h2>
+      </div>
+      <a class="text-link" href="shop.html">Смотреть все</a>
+    </section>
+
+    <section class="featured-grid">
+      <article class="feature-card large-card">
+        <img src="gaben-steam.gif" alt="Steam 2.0 news">
+        <div>
+          <span class="tag">Главная новость</span>
+          <h3>Большое обновление интерфейса</h3>
+          <p>
+            Главная страница стала ближе к Steam: крупная витрина, понятная
+            навигация и блоки, которые легко сканировать.
+          </p>
+        </div>
+      </article>
+      <article class="game-tile">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/capsule_231x87.jpg" alt="Baldur's Gate 3">
+        <h3>Baldur's Gate 3</h3>
+        <p>RPG · Кооператив</p>
+        <strong>2499 RUB</strong>
+      </article>
+      <article class="game-tile">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/capsule_231x87.jpg" alt="ELDEN RING">
+        <h3>ELDEN RING</h3>
+        <p>Экшен · Фэнтези</p>
+        <strong>2999 RUB</strong>
+      </article>
+    </section>
+
+    <section class="updates-panel">
+      <div>
+        <span class="eyebrow">Лента обновлений</span>
+        <h2>Что изменилось в Steam 2.0</h2>
+      </div>
+      <div class="update-list">
+        <article>
+          <span>Flatbub Core</span>
+          <p>Игры устанавливаются в изолированную среду и обновляются атомарно.</p>
+        </article>
+        <article>
+          <span>Новая навигация</span>
+          <p>Главная, информация и магазин теперь связаны как единый сервис.</p>
+        </article>
+        <article>
+          <span>Витрина игр</span>
+          <p>Магазин вынесен на отдельную страницу с карточками и фильтрами.</p>
+        </article>
+        <article>
+          <span>Аналитика</span>
+          <p>Wrapped-итоги, траты и сравнение со средней статистикой платформы.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>

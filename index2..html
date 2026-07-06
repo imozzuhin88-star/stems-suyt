@@ -1,25 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="style2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Информация | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="menu">
-  <a href="index.html" class="item">
-    КАТАЛОГ
-  </a>
-  <a class="item">
-    ИНФОРМАЦИЯ
-  </a>
-  <a class="item">
-    ПОМОЩЬ
-  </a>
-</div>
- <div class="cards">
- </div>
- <script src="script.js"></script>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a class="active-link" href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="shop.html">Установить</a>
+  </header>
 
+  <main class="page-shell info-page">
+    <section class="info-hero">
+      <div>
+        <span class="eyebrow">О платформе</span>
+        <h1>Steam 2.0 как магазин, библиотека и системный центр игр</h1>
+        <p>
+          Информационная страница теперь объясняет идею проекта: знакомая
+          Steam-подача, каталог игр, прозрачные статусы и Flatbub Core под
+          капотом.
+        </p>
+      </div>
+      <img src="imp2w2xo.jpg" alt="Steam 2.0 platform preview">
+    </section>
+
+    <section class="info-grid">
+      <article>
+        <span class="info-number">01</span>
+        <h2>Магазин</h2>
+        <p>
+          Отдельная страница магазина показывает игры карточками, жанры,
+          цены и быстрые фильтры. Это основа пользовательского пути.
+        </p>
+      </article>
+      <article>
+        <span class="info-number">02</span>
+        <h2>Библиотека</h2>
+        <p>
+          В будущем сюда можно добавить установленные игры, прогресс,
+          последние запуски и рекомендации, как в клиенте Steam.
+        </p>
+      </article>
+      <article>
+        <span class="info-number">03</span>
+        <h2>Flatbub Core</h2>
+        <p>
+          Концепция отвечает за чистые установки, атомарные обновления и
+          одинаковый запуск на Steam Deck, Linux и PC.
+        </p>
+      </article>
+    </section>
+
+    <section class="split-section">
+      <div>
+        <span class="eyebrow">Почему это удобно</span>
+        <h2>Steam-подход без перегруза</h2>
+        <p>
+          Вместо хаотичных блоков страница использует крупные панели,
+          короткие подписи и сканируемые карточки. Пользователь сразу видит,
+          куда идти: на главную, в магазин или к описанию платформы.
+        </p>
+      </div>
+      <div class="compat-list">
+        <div>
+          <strong>Steam Deck</strong>
+          <span>Готовность к портативной игре</span>
+        </div>
+        <div>
+          <strong>Linux</strong>
+          <span>Контейнеры и управляемые рантаймы</span>
+        </div>
+        <div>
+          <strong>PC</strong>
+          <span>Классический каталог и быстрые обновления</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline">
+      <h2>План развития</h2>
+      <article>
+        <span>Сейчас</span>
+        <p>Три страницы: главная, информация и магазин.</p>
+      </article>
+      <article>
+        <span>Следующий шаг</span>
+        <p>Карточка игры с подробностями, галереей и кнопкой установки.</p>
+      </article>
+      <article>
+        <span>Позже</span>
+        <p>Библиотека пользователя, достижения и список обновлений.</p>
+      </article>
+      <article>
+        <span>Аналитика</span>
+        <p>Годовой Wrapped-отчет, графики трат и сравнение с платформой.</p>
+      </article>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>

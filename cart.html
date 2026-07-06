@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="active-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="shop.html">Продолжить покупки</a>
+  </header>
+
+  <main class="page-shell cart-page">
+    <div class="cart-breadcrumb">
+      <a href="index.html">Домашняя страница</a>
+      <span>></span>
+      <a href="shop.html">Магазин</a>
+      <span>></span>
+      <strong>Ваша корзина</strong>
+    </div>
+
+    <section class="cart-heading">
+      <div>
+        <span class="eyebrow">Steam 2.0 Checkout</span>
+        <h1>Ваша корзина</h1>
+      </div>
+      <a class="secondary-link" href="shop.html">Продолжить покупки</a>
+    </section>
+
+    <section class="cart-layout">
+      <div>
+        <div id="cartItems" class="cart-items"></div>
+
+        <section class="cart-sale-panel">
+          <h2>Карточки летней распродажи</h2>
+          <p id="cartBonusText">Добавь игру в корзину, чтобы увидеть прогресс бонусов.</p>
+          <div class="cart-progress">
+            <i id="cartProgressBar"></i>
+          </div>
+          <small id="cartProgressText">0 из 8 карточек</small>
+        </section>
+
+        <div class="cart-actions">
+          <a class="secondary-link" href="shop.html">Продолжить покупки</a>
+          <button id="clearCartButton" class="secondary-button" type="button">Удалить все товары</button>
+        </div>
+      </div>
+
+      <aside class="cart-summary">
+        <div class="cart-summary-card">
+          <label>
+            Страна
+            <select>
+              <option>Россия</option>
+              <option>Казахстан</option>
+              <option>Израиль</option>
+              <option>Беларусь</option>
+            </select>
+          </label>
+          <div class="cart-total-row">
+            <span>Общая стоимость</span>
+            <strong id="cartTotal">0 RUB</strong>
+          </div>
+          <p>Налог и скидки рассчитываются при оформлении покупки в регионе, где он применим.</p>
+          <button id="checkoutButton" class="primary-button" type="button">Перейти к оплате</button>
+        </div>
+
+        <div class="cart-license-card">
+          <div class="cart-monitor">
+            <span></span>
+            <i></i>
+          </div>
+          <h2>Цифровая покупка</h2>
+          <p>После оплаты игры появятся в библиотеке Steam 2.0 и останутся привязаны к аккаунту.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="cart-recommendations">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Рекомендации</span>
+          <h2>Можно добавить ещё</h2>
+        </div>
+      </div>
+      <div class="cart-recommendation-grid">
+        <a href="shop.html" class="cart-recommendation">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/413150/capsule_231x87.jpg" alt="Stardew Valley">
+          <strong>Stardew Valley</strong>
+          <span>399 RUB</span>
+        </a>
+        <a href="shop.html" class="cart-recommendation">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/620/capsule_231x87.jpg" alt="Portal 2">
+          <strong>Portal 2</strong>
+          <span>259 RUB</span>
+        </a>
+        <a href="shop.html" class="cart-recommendation">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/capsule_231x87.jpg" alt="Baldur's Gate 3">
+          <strong>Baldur's Gate 3</strong>
+          <span>2499 RUB</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -7,12 +7,13 @@ description: Project-specific workflow for the local stems-suyt WebStorm/Vite fr
 
 ## Core Workflow
 
-1. Start by reading `references/project-guide.md`; it contains the current project map, active files, known traps, and verification commands.
+1. Start by reading `memory.md` in the project root and `references/project-guide.md`; they contain the current project map, active files, known traps, and verification commands.
 2. Inspect the live files before editing because this project is small and may change quickly.
-3. Treat root-level `index.html`, `index2..html`, `style.css`, `style2.css`, and `script.js` as the active app unless the user explicitly asks about the WebStorm starter files in `src/` or `public/`.
+3. Treat root-level `index.html`, `index2..html`, `shop.html`, `cart.html`, `library.html`, `analytics.html`, `social.html`, `community.html`, `community-created.html`, `style.css`, `style2.css`, and `script.js` as the active app unless the user explicitly asks about the WebStorm starter files in `src/` or `public/`.
 4. Preserve the project's playful Steam 2.0 / Flatbub concept unless the user asks for a different direction.
 5. Be especially careful with text encoding: much of the Russian text currently appears as mojibake. Do not "repair" wording by guessing large passages unless the user asks for copy cleanup or provides the intended text.
 6. Keep project-specific skill and support files inside this repository, preferably under `.codex/skills/`, unless the user explicitly asks for global Codex files.
+7. Keep `memory.md` updated after meaningful page, navigation, tooling, workflow, or project-rule changes.
 
 ## Editing Guidance
 
@@ -20,7 +21,7 @@ description: Project-specific workflow for the local stems-suyt WebStorm/Vite fr
 - Prefer consolidating duplicated CSS only when the requested change benefits from it; avoid broad rewrites during small fixes.
 - Use Prettier settings from `.prettierrc`: single quotes, print width 80, tab width 2.
 - When adding new game cards or UI sections, keep existing class names and visual language unless refactoring the screen intentionally.
-- If fixing JavaScript, check for missing DOM elements before calling methods on them; `script.js` currently assumes `.cards` exists, which is true for `index2..html` but not for `index.html`.
+- If fixing JavaScript, keep the current pattern of checking that page-specific DOM elements exist before attaching handlers; `script.js` is shared by analytics, store/cart, and community pages.
 
 ## Verification
 

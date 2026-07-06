@@ -1,0 +1,55 @@
+# Project Memory
+
+## Purpose
+
+This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / Flatbub game-store concept.
+
+## Current Pages
+
+- `index.html`: Steam-inspired main landing page with a top bar, featured showcase, recommendation cards, update feed, and links to analytics/social features.
+- `index2..html`: redesigned static information page about the platform, Flatbub Core, compatibility, analytics, social features, and development plan.
+- `shop.html`: Steam-like store catalog shown as full-width game rows with real Steam game names, Steam CDN capsule covers, filters, prices, and Flatbub Core status.
+- `cart.html`: Steam-like cart page that renders games saved from the store, shows total price, bonus card progress, removal controls, and checkout state.
+- `library.html`: Steam-like interactive library with a left game list, selected game hero, play/favorite controls, activity feed, and per-game saved notes.
+- `analytics.html`: user analytics page with a yearly Wrapped-style report, charts, comparison with platform averages, and a custom input form that calculates a result.
+- `social.html`: Steam-like community activity hub. It lists only user-created communities from browser storage, supports search, and creates new communities.
+- `community.html`: dynamic separate community room opened by `?id=...`; each saved community has its own chat, member count, and progress checklist.
+- `community-created.html`: legacy compatibility page that immediately redirects to the new community activity hub.
+
+## Active Files
+
+- `style.css`: shared Steam-inspired styling for all active pages, including analytics panels, charts, existing-community/chat pages, store list rows, and the global background.
+- `style2.css`: compatibility stylesheet that imports `style.css`.
+- `script.js`: analytics result handler, store filtering, localStorage-backed cart, and localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress saving.
+- `.codex/skills/stems-suyt/`: local project skill and reference notes for future Codex work.
+
+## Project Rules
+
+- Keep project-specific changes inside `C:\Users\Ivan\WebstormProjects\stems-suyt` unless Ivan explicitly asks otherwise.
+- Keep this `memory.md` updated after meaningful structural, navigation, page, tooling, or workflow changes.
+- Preserve the Steam 2.0 / Flatbub visual direction unless Ivan asks for a redesign.
+- Be careful with Cyrillic text and encoding. Some old files previously displayed mojibake in terminal output.
+- Before editing, check the current files and `git status --short`.
+
+## Verification Notes
+
+- Check links across all active pages after navigation changes.
+- Run `npm run build` when dependencies are installed.
+- As of the last check, `node_modules` was missing, so `vite` was not available for `npm run build`.
+
+## Recent Changes
+
+- Added `shop.html` as the third page.
+- Reworked navigation to include `Главная`, `Информация`, and `Магазин`.
+- Updated `script.js` so it avoids failing when `.cards` is absent.
+- Added local project skill files under `.codex/skills/stems-suyt/`.
+- Redesigned `index.html` and `index2..html` around a Steam-like dark store interface, shared top navigation, large showcase panels, cards, and platform explanation sections.
+- Added `analytics.html` with user-facing analytics: yearly Wrapped report, monthly/genre spending charts, comparison with platform averages, and a custom input result form.
+- Reworked `social.html` into a Steam-like activity hub for real user-created communities and added `community.html` for separate saved community rooms.
+- Fixed `shop.html` as a Steam-like list with real Steam game names and Steam CDN capsule covers instead of fake titles, local random images, or letter placeholders.
+- Replaced old fake game references/placeholders on the main and analytics pages with real Steam game names and Steam CDN imagery.
+- Added interactive store filters, animated add-to-cart buttons, saved cart state, and a new `cart.html` checkout-style page.
+- Added a persistent cart link and a new library link to the shared navigation on active pages.
+- Added `library.html` and library interactions: game selection, search, play state, favorites, activity entries, and saved notes.
+- Expanded `shop.html` with additional games from the Steam library reference screenshot, including Morrowind, Fallout: New Vegas, Fallout 4, Fallout 76, Phasmophobia, Dead by Daylight, Borderlands 2, Sea of Thieves, Death Stranding Director's Cut, and SCP: Secret Laboratory.
+- Improved the global site background with layered Steam-like grid, diagonal light bands, and darker edge depth.

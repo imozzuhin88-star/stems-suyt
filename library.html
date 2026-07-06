@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Библиотека | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a class="active-link" href="library.html">Библиотека</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="shop.html">Открыть магазин</a>
+  </header>
+
+  <main class="library-page">
+    <aside class="library-sidebar">
+      <div class="library-sidebar-head">
+        <strong>Библиотека</strong>
+        <span id="libraryCount">10 игр</span>
+      </div>
+      <input id="librarySearchInput" class="library-search" type="search" aria-label="Поиск по библиотеке" placeholder="Поиск по библиотеке">
+      <div class="library-group-title">Избранное и последние</div>
+      <div id="libraryGameList" class="library-game-list">
+        <button class="library-game active" type="button" data-library-game data-id="morrowind" data-title="The Elder Scrolls III: Morrowind" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/22320/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/22320/capsule_231x87.jpg" data-hours="1" data-last="Вчера" data-tags="RPG, Классика, Открытый мир" data-description="Классическая RPG из твоего скриншота библиотеки: огромный мир, много свободы и настоящий Steam-вайб старой школы.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/22320/capsule_231x87.jpg" alt="Morrowind">
+          <span>The Elder Scrolls III: Morrowind</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="fallout-new-vegas" data-title="Fallout: New Vegas" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/22380/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/22380/capsule_231x87.jpg" data-hours="48" data-last="3 дня назад" data-tags="RPG, Постапокалипсис, Классика" data-description="Пустошь, выборы и репутация фракций. Отличный кандидат для библиотеки Steam 2.0.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/22380/capsule_231x87.jpg" alt="Fallout: New Vegas">
+          <span>Fallout: New Vegas</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="cyberpunk-2077" data-title="Cyberpunk 2077" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/1091500/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1091500/capsule_231x87.jpg" data-hours="84" data-last="Сегодня" data-tags="RPG, Экшен, Киберпанк" data-description="Ночная игра для больших сессий: город, задания, сборки персонажа и яркая витрина.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/capsule_231x87.jpg" alt="Cyberpunk 2077">
+          <span>Cyberpunk 2077</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="red-dead-redemption-2" data-title="Red Dead Redemption 2" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/1174180/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1174180/capsule_231x87.jpg" data-hours="32" data-last="На прошлой неделе" data-tags="Открытый мир, Сюжет, Приключение" data-description="Большое приключение с медленным темпом, лагерем, дорогой и кинематографичной страницей в библиотеке.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/capsule_231x87.jpg" alt="Red Dead Redemption 2">
+          <span>Red Dead Redemption 2</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="phasmophobia" data-title="Phasmophobia" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/739630/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/739630/capsule_231x87.jpg" data-hours="17" data-last="Вчера" data-tags="Хоррор, Кооператив, VR" data-description="Кооперативный хоррор для коротких ночных запусков и обсуждений в сообществе.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/739630/capsule_231x87.jpg" alt="Phasmophobia">
+          <span>Phasmophobia</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="skyrim-special-edition" data-title="The Elder Scrolls V: Skyrim Special Edition" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/489830/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/489830/capsule_231x87.jpg" data-hours="126" data-last="4 июля" data-tags="RPG, Моды, Фэнтези" data-description="Большая RPG-песочница, которая хорошо показывает, как библиотека хранит долгие игры и модные проекты.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/489830/capsule_231x87.jpg" alt="Skyrim Special Edition">
+          <span>The Elder Scrolls V: Skyrim Special Edition</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="sea-of-thieves" data-title="Sea of Thieves" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/1172620/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1172620/capsule_231x87.jpg" data-hours="21" data-last="2 дня назад" data-tags="Кооператив, Приключение, Онлайн" data-description="Командная игра для друзей: корабль, рейды, открытое море и быстрый старт из библиотеки.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172620/capsule_231x87.jpg" alt="Sea of Thieves">
+          <span>Sea of Thieves</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="dead-by-daylight" data-title="Dead by Daylight" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/381210/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/381210/capsule_231x87.jpg" data-hours="53" data-last="Сегодня" data-tags="Хоррор, Мультиплеер, Выживание" data-description="Онлайн-хоррор с асимметричными матчами и заметным местом в списке любимых игр.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/381210/capsule_231x87.jpg" alt="Dead by Daylight">
+          <span>Dead by Daylight</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="borderlands-2" data-title="Borderlands 2" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/49520/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/49520/capsule_231x87.jpg" data-hours="66" data-last="Июнь" data-tags="Шутер, Кооператив, Лут" data-description="Кооперативный лут-шутер, который красиво смотрится в Steam-like списке библиотеки.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/49520/capsule_231x87.jpg" alt="Borderlands 2">
+          <span>Borderlands 2</span>
+        </button>
+        <button class="library-game" type="button" data-library-game data-id="fallout-4" data-title="Fallout 4" data-hero="https://cdn.akamai.steamstatic.com/steam/apps/377160/library_hero.jpg" data-image="https://cdn.akamai.steamstatic.com/steam/apps/377160/capsule_231x87.jpg" data-hours="74" data-last="Май" data-tags="RPG, Экшен, Моды" data-description="Постапокалиптическая RPG с поселениями, модами и длинными сессиями в библиотеке.">
+          <img src="https://cdn.akamai.steamstatic.com/steam/apps/377160/capsule_231x87.jpg" alt="Fallout 4">
+          <span>Fallout 4</span>
+        </button>
+      </div>
+    </aside>
+
+    <section class="library-detail">
+      <div class="library-hero-banner">
+        <img id="libraryHeroImage" src="https://cdn.akamai.steamstatic.com/steam/apps/22320/library_hero.jpg" alt="Selected game">
+      </div>
+
+      <div class="library-actionbar">
+        <button id="libraryPlayButton" class="library-play-button" type="button">▶ Играть</button>
+        <div class="library-stat">
+          <span>Облачные сохранения</span>
+          <strong id="libraryCloudStatus">Синхронизированы</strong>
+        </div>
+        <div class="library-stat">
+          <span>Последний запуск</span>
+          <strong id="libraryLastPlayed">Вчера</strong>
+        </div>
+        <div class="library-stat">
+          <span>Вы играли</span>
+          <strong id="libraryHours">1 ч.</strong>
+        </div>
+        <button id="libraryFavoriteButton" class="library-icon-button" type="button" aria-label="Избранное">♡</button>
+      </div>
+
+      <nav class="library-tabs" aria-label="Разделы игры">
+        <a href="shop.html">Страница в магазине</a>
+        <a href="social.html">Центр сообщества</a>
+        <a href="#libraryActivity">Активность</a>
+        <a href="#libraryNotes">Заметки</a>
+      </nav>
+
+      <section class="library-content-grid">
+        <article class="library-panel library-main-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Выбрано</span>
+              <h1 id="libraryTitle">The Elder Scrolls III: Morrowind</h1>
+            </div>
+          </div>
+          <p id="libraryDescription"></p>
+          <div id="libraryTags" class="store-tags"></div>
+        </article>
+
+        <aside class="library-panel">
+          <span class="eyebrow">Играющие друзья</span>
+          <h2>Активность</h2>
+          <p id="libraryFriendStatus">1 друг добавил игру в список желаемого.</p>
+        </aside>
+      </section>
+
+      <section id="libraryActivity" class="library-panel library-activity">
+        <span class="eyebrow">Активность</span>
+        <div id="libraryActivityFeed"></div>
+      </section>
+
+      <section id="libraryNotes" class="library-panel library-notes">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Заметки</span>
+            <h2>Личная заметка к игре</h2>
+          </div>
+          <button id="librarySaveNoteButton" class="secondary-button" type="button">Сохранить</button>
+        </div>
+        <textarea id="libraryNoteInput" rows="4" aria-label="Личная заметка к выбранной игре" placeholder="Например: пройти квестовую линию, проверить моды, позвать друзей..."></textarea>
+        <small id="libraryNoteStatus">Заметка хранится в браузере для выбранной игры.</small>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

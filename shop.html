@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Магазин | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container store-page">
+    <nav class="site-nav">
+      <a class="logo" href="index.html">STEAM 2.0</a>
+      <div class="nav-links">
+        <a class="cl1" href="index.html">Главная</a>
+        <a class="cl1" href="index2..html">Информация</a>
+        <a class="cl1 active-link" href="shop.html">Магазин</a>
+        <a class="cl1" href="analytics.html">Аналитика</a>
+        <a class="cl1" href="social.html">Сообщество</a>
+        <a class="cl1" href="library.html">Библиотека</a>
+        <a class="cl1 cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+      </div>
+    </nav>
+
+    <section class="hero store-hero">
+      <span class="eyebrow">Каталог Steam 2.0</span>
+      <h1>Магазин игр</h1>
+      <p class="sub">
+        Витрина в стиле Steam: реальные игры, официальные capsule-обложки,
+        рабочие фильтры по категориям и корзина с сохранением выбора.
+      </p>
+    </section>
+
+    <section class="filters" aria-label="Фильтры магазина">
+      <button class="filter-btn active" data-filter="all">Все игры</button>
+      <button class="filter-btn" data-filter="hit">Хиты</button>
+      <button class="filter-btn" data-filter="rpg">RPG</button>
+      <button class="filter-btn" data-filter="action">Экшен</button>
+      <button class="filter-btn" data-filter="indie">Инди</button>
+      <button class="filter-btn" data-filter="strategy">Стратегии</button>
+      <button class="filter-btn" data-filter="coop">Кооператив</button>
+    </section>
+
+    <div id="storeFilterStatus" class="store-filter-status" aria-live="polite">
+      Показаны все игры
+    </div>
+
+    <section class="store-list" aria-label="Каталог игр">
+      <article class="store-row" data-game-id="cyberpunk-2077" data-categories="all hit rpg action" data-price="1999" data-title="Cyberpunk 2077" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1091500/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/capsule_231x87.jpg" alt="Cyberpunk 2077">
+        <div class="store-info">
+          <h2>Cyberpunk 2077</h2>
+          <div class="store-tags"><span>RPG</span><span>Открытый мир</span><span>Киберпанк</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Хит недели</span>
+          <strong>1999 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="baldurs-gate-3" data-categories="all hit rpg coop" data-price="2499" data-title="Baldur's Gate 3" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1086940/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/capsule_231x87.jpg" alt="Baldur's Gate 3">
+        <div class="store-info">
+          <h2>Baldur's Gate 3</h2>
+          <div class="store-tags"><span>RPG</span><span>Кооператив</span><span>Пошаговая</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Лучшее с друзьями</span>
+          <strong>2499 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="elden-ring" data-categories="all hit rpg action" data-price="2999" data-title="ELDEN RING" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1245620/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/capsule_231x87.jpg" alt="ELDEN RING">
+        <div class="store-info">
+          <h2>ELDEN RING</h2>
+          <div class="store-tags"><span>Souls-like</span><span>Фэнтези</span><span>Экшен</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Рекомендуем</span>
+          <strong>2999 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="valheim" data-categories="all hit coop indie" data-price="529" data-title="Valheim" data-image="https://cdn.akamai.steamstatic.com/steam/apps/892970/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/892970/capsule_231x87.jpg" alt="Valheim">
+        <div class="store-info">
+          <h2>Valheim</h2>
+          <div class="store-tags"><span>Выживание</span><span>Кооператив</span><span>Песочница</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Для компании</span>
+          <strong>529 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="red-dead-redemption-2" data-categories="all hit action" data-price="1199" data-title="Red Dead Redemption 2" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1174180/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/capsule_231x87.jpg" alt="Red Dead Redemption 2">
+        <div class="store-info">
+          <h2>Red Dead Redemption 2</h2>
+          <div class="store-tags"><span>Приключение</span><span>Открытый мир</span><span>Сюжет</span></div>
+        </div>
+        <div class="store-meta">
+          <span>-60%</span>
+          <strong>1199 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="skyrim-special-edition" data-categories="all rpg" data-price="1599" data-title="The Elder Scrolls V: Skyrim Special Edition" data-image="https://cdn.akamai.steamstatic.com/steam/apps/489830/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/489830/capsule_231x87.jpg" alt="The Elder Scrolls V: Skyrim Special Edition">
+        <div class="store-info">
+          <h2>The Elder Scrolls V: Skyrim Special Edition</h2>
+          <div class="store-tags"><span>RPG</span><span>Моды</span><span>Фэнтези</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Классика</span>
+          <strong>1599 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="stardew-valley" data-categories="all hit indie coop" data-price="399" data-title="Stardew Valley" data-image="https://cdn.akamai.steamstatic.com/steam/apps/413150/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/413150/capsule_231x87.jpg" alt="Stardew Valley">
+        <div class="store-info">
+          <h2>Stardew Valley</h2>
+          <div class="store-tags"><span>Инди</span><span>Ферма</span><span>Кооператив</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Уютный хит</span>
+          <strong>399 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="hollow-knight" data-categories="all hit indie action" data-price="329" data-title="Hollow Knight" data-image="https://cdn.akamai.steamstatic.com/steam/apps/367520/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/367520/capsule_231x87.jpg" alt="Hollow Knight">
+        <div class="store-info">
+          <h2>Hollow Knight</h2>
+          <div class="store-tags"><span>Метроидвания</span><span>Инди</span><span>Сложная</span></div>
+        </div>
+        <div class="store-meta">
+          <span>В wishlist</span>
+          <strong>329 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="hades-2" data-categories="all hit indie action" data-price="1100" data-title="Hades II" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1145350/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1145350/capsule_231x87.jpg" alt="Hades II">
+        <div class="store-info">
+          <h2>Hades II</h2>
+          <div class="store-tags"><span>Рогалик</span><span>Экшен</span><span>Мифология</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Новинка</span>
+          <strong>1100 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="no-mans-sky" data-categories="all coop action" data-price="1999" data-title="No Man's Sky" data-image="https://cdn.akamai.steamstatic.com/steam/apps/275850/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/275850/capsule_231x87.jpg" alt="No Man's Sky">
+        <div class="store-info">
+          <h2>No Man's Sky</h2>
+          <div class="store-tags"><span>Космос</span><span>Исследование</span><span>Выживание</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Большая игра</span>
+          <strong>1999 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="frostpunk-2" data-categories="all strategy hit" data-price="1999" data-title="Frostpunk 2" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1601580/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1601580/capsule_231x87.jpg" alt="Frostpunk 2">
+        <div class="store-info">
+          <h2>Frostpunk 2</h2>
+          <div class="store-tags"><span>Стратегия</span><span>Выживание</span><span>Город</span></div>
+        </div>
+        <div class="store-meta">
+          <span>В разработке</span>
+          <strong>1999 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="doom-eternal" data-categories="all action hit" data-price="1199" data-title="DOOM Eternal" data-image="https://cdn.akamai.steamstatic.com/steam/apps/782330/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/782330/capsule_231x87.jpg" alt="DOOM Eternal">
+        <div class="store-info">
+          <h2>DOOM Eternal</h2>
+          <div class="store-tags"><span>Шутер</span><span>Экшен</span><span>Саундтрек</span></div>
+        </div>
+        <div class="store-meta">
+          <span>18+</span>
+          <strong>1199 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="portal-2" data-categories="all hit coop" data-price="259" data-title="Portal 2" data-image="https://cdn.akamai.steamstatic.com/steam/apps/620/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/620/capsule_231x87.jpg" alt="Portal 2">
+        <div class="store-info">
+          <h2>Portal 2</h2>
+          <div class="store-tags"><span>Головоломка</span><span>Кооператив</span><span>Классика</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Для двоих</span>
+          <strong>259 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+      <article class="store-row" data-game-id="morrowind" data-categories="all rpg hit" data-price="499" data-title="The Elder Scrolls III: Morrowind" data-image="https://cdn.akamai.steamstatic.com/steam/apps/22320/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/22320/capsule_231x87.jpg" alt="The Elder Scrolls III: Morrowind">
+        <div class="store-info">
+          <h2>The Elder Scrolls III: Morrowind</h2>
+          <div class="store-tags"><span>RPG</span><span>Классика</span><span>Открытый мир</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Из библиотеки</span>
+          <strong>499 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="fallout-new-vegas" data-categories="all rpg hit" data-price="399" data-title="Fallout: New Vegas" data-image="https://cdn.akamai.steamstatic.com/steam/apps/22380/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/22380/capsule_231x87.jpg" alt="Fallout: New Vegas">
+        <div class="store-info">
+          <h2>Fallout: New Vegas</h2>
+          <div class="store-tags"><span>RPG</span><span>Постапокалипсис</span><span>Классика</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Выбор игроков</span>
+          <strong>399 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="fallout-4" data-categories="all rpg action hit" data-price="799" data-title="Fallout 4" data-image="https://cdn.akamai.steamstatic.com/steam/apps/377160/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/377160/capsule_231x87.jpg" alt="Fallout 4">
+        <div class="store-info">
+          <h2>Fallout 4</h2>
+          <div class="store-tags"><span>RPG</span><span>Экшен</span><span>Моды</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Серия Fallout</span>
+          <strong>799 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="fallout-76" data-categories="all rpg action coop" data-price="1199" data-title="Fallout 76" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1151340/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1151340/capsule_231x87.jpg" alt="Fallout 76">
+        <div class="store-info">
+          <h2>Fallout 76</h2>
+          <div class="store-tags"><span>Онлайн</span><span>Кооператив</span><span>Выживание</span></div>
+        </div>
+        <div class="store-meta">
+          <span>С друзьями</span>
+          <strong>1199 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="phasmophobia" data-categories="all hit coop action" data-price="599" data-title="Phasmophobia" data-image="https://cdn.akamai.steamstatic.com/steam/apps/739630/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/739630/capsule_231x87.jpg" alt="Phasmophobia">
+        <div class="store-info">
+          <h2>Phasmophobia</h2>
+          <div class="store-tags"><span>Хоррор</span><span>Кооператив</span><span>VR</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Ночной кооп</span>
+          <strong>599 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="dead-by-daylight" data-categories="all hit action coop" data-price="799" data-title="Dead by Daylight" data-image="https://cdn.akamai.steamstatic.com/steam/apps/381210/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/381210/capsule_231x87.jpg" alt="Dead by Daylight">
+        <div class="store-info">
+          <h2>Dead by Daylight</h2>
+          <div class="store-tags"><span>Хоррор</span><span>Мультиплеер</span><span>Выживание</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Онлайн</span>
+          <strong>799 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="borderlands-2" data-categories="all action coop hit" data-price="699" data-title="Borderlands 2" data-image="https://cdn.akamai.steamstatic.com/steam/apps/49520/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/49520/capsule_231x87.jpg" alt="Borderlands 2">
+        <div class="store-info">
+          <h2>Borderlands 2</h2>
+          <div class="store-tags"><span>Шутер</span><span>Кооператив</span><span>Лут</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Классика коопа</span>
+          <strong>699 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="sea-of-thieves" data-categories="all action coop hit" data-price="1499" data-title="Sea of Thieves" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1172620/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1172620/capsule_231x87.jpg" alt="Sea of Thieves">
+        <div class="store-info">
+          <h2>Sea of Thieves</h2>
+          <div class="store-tags"><span>Пираты</span><span>Кооператив</span><span>Приключение</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Команда</span>
+          <strong>1499 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="death-stranding-dc" data-categories="all action hit" data-price="1999" data-title="DEATH STRANDING DIRECTOR'S CUT" data-image="https://cdn.akamai.steamstatic.com/steam/apps/1850570/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/1850570/capsule_231x87.jpg" alt="DEATH STRANDING DIRECTOR'S CUT">
+        <div class="store-info">
+          <h2>DEATH STRANDING DIRECTOR'S CUT</h2>
+          <div class="store-tags"><span>Приключение</span><span>Сюжет</span><span>Открытый мир</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Director's Cut</span>
+          <strong>1999 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+
+      <article class="store-row" data-game-id="scp-secret-lab" data-categories="all action coop" data-price="0" data-title="SCP: Secret Laboratory" data-image="https://cdn.akamai.steamstatic.com/steam/apps/700330/capsule_231x87.jpg">
+        <img class="game-cover" src="https://cdn.akamai.steamstatic.com/steam/apps/700330/capsule_231x87.jpg" alt="SCP: Secret Laboratory">
+        <div class="store-info">
+          <h2>SCP: Secret Laboratory</h2>
+          <div class="store-tags"><span>Хоррор</span><span>Мультиплеер</span><span>Бесплатно</span></div>
+        </div>
+        <div class="store-meta">
+          <span>Free to play</span>
+          <strong>0 RUB</strong>
+          <button class="cart-add-button" type="button" data-add-cart><span>+</span> В корзину</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="flatbub-integration">
+      <div class="flatbub-logo">
+        <span>Steam 2.0</span> * <span>Flatbub Core</span>
+      </div>
+      <div class="status">
+        Мгновенные обновления, чистое удаление игр и быстрый переход в корзину.
+      </div>
+      <div class="status">Доступно на Steam Deck, Linux и PC.</div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

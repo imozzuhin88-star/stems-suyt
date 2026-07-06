@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Активность сообщества | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a class="active-link" href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="shop.html">Открыть магазин</a>
+  </header>
+
+  <main class="page-shell social-page">
+    <section class="community-hub-hero">
+      <div>
+        <h1>Активность сообщества</h1>
+        <p>
+          Центр твоих реальных сообществ: создавай группу, заходи на отдельную
+          страницу, пиши в чат и возвращайся позже без потери прогресса.
+        </p>
+      </div>
+      <form id="communityCreateForm" class="community-form">
+        <span class="eyebrow">Создать центр</span>
+        <label>
+          Название
+          <input id="communityNameInput" type="text" maxlength="42" placeholder="Например: RPG на выходные" required>
+        </label>
+        <label>
+          Игра или жанр
+          <input id="communityGenreInput" type="text" maxlength="36" placeholder="Baldur's Gate 3, RPG, кооператив">
+        </label>
+        <label>
+          Описание
+          <textarea id="communityDescriptionInput" rows="3" maxlength="180" placeholder="Для чего собирается сообщество"></textarea>
+        </label>
+        <button class="primary-button" type="submit">Создать и открыть</button>
+      </form>
+    </section>
+
+    <section class="community-steam-layout">
+      <div>
+        <nav class="community-tabs" aria-label="Разделы активности">
+          <a class="active-link" href="#communityList">Все</a>
+          <a href="#communityActivity">Сообщения</a>
+          <a href="#communityList">Центры</a>
+          <a href="#communityList">Голосования</a>
+          <a href="#communityList">Списки желаемого</a>
+        </nav>
+
+        <section class="social-panel community-directory">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Твои центры</span>
+              <h2>Созданные сообщества</h2>
+            </div>
+            <input id="communitySearchInput" class="community-search" type="search" aria-label="Найти центр сообщества" placeholder="Найти центр">
+          </div>
+          <div id="communityList" class="community-list"></div>
+        </section>
+
+        <section class="social-panel community-activity-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Последнее</span>
+              <h2>Активность</h2>
+            </div>
+          </div>
+          <div id="communityActivity" class="community-activity"></div>
+        </section>
+      </div>
+
+      <aside class="social-panel community-help-panel">
+        <span class="eyebrow">Как в Steam</span>
+        <h2>Без фейковых друзей</h2>
+        <p>
+          Здесь не показываются придуманные “друзья онлайн”. Всё, что появится
+          в ленте, создаёшь ты: сообщества, сообщения, прогресс и заметки.
+        </p>
+        <div class="community-side-stat">
+          <strong id="communityTotalCount">0</strong>
+          <span>создано центров</span>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

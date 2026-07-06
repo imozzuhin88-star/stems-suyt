@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сообщество | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a class="active-link" href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <a class="install-link" href="social.html">Все центры</a>
+  </header>
+
+  <main class="page-shell community-page">
+    <section class="community-room-hero">
+      <div>
+        <span id="communityGenre" class="eyebrow">Сообщество</span>
+        <h1 id="communityName">Сообщество</h1>
+        <p id="communityDescription">
+          Загрузка страницы сообщества.
+        </p>
+        <div class="hero-actions">
+          <a class="secondary-link" href="social.html">Назад к активности</a>
+          <a class="secondary-link" href="shop.html">Открыть магазин</a>
+        </div>
+      </div>
+      <aside class="member-card">
+        <span>Участники</span>
+        <strong id="memberCount">1</strong>
+        <p>Счётчик хранится вместе с этим сообществом и не смешивается с другими центрами.</p>
+      </aside>
+    </section>
+
+    <section class="community-room-layout">
+      <article class="chat-panel social-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Чат</span>
+            <h2>Общий канал</h2>
+          </div>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" maxlength="240" aria-label="Написать сообщение в чат сообщества" placeholder="Написать сообщение">
+          <button type="submit">Отправить</button>
+        </form>
+      </article>
+
+      <aside class="social-panel community-sidebar">
+        <span class="eyebrow">Прогресс</span>
+        <h2>Что уже сделано</h2>
+        <div class="progress-list">
+          <label class="progress-item">
+            <input type="checkbox" data-progress="wishlist">
+            <span>Собрали общий wishlist</span>
+          </label>
+          <label class="progress-item">
+            <input type="checkbox" data-progress="vote">
+            <span>Провели голосование за игру</span>
+          </label>
+          <label class="progress-item">
+            <input type="checkbox" data-progress="firstSession">
+            <span>Договорились о первой сессии</span>
+          </label>
+        </div>
+        <button id="addMemberButton" class="secondary-button" type="button">+ участник</button>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
