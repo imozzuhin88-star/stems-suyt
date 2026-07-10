@@ -12,10 +12,10 @@ const sceneOptions = [
 ];
 
 const backgroundImageOptions = [
-  { id: 'none', label: 'Без картинки', image: '' },
-  { id: 'desert', label: 'Пустыня', image: 'background-desert.png' },
-  { id: 'winter', label: 'Зима', image: 'background-winter.png' },
-  { id: 'halloween', label: 'Хэллоуин', image: 'background-halloween.png' },
+  { id: 'none', label: 'Без картинки' },
+  { id: 'desert', label: 'Пустыня' },
+  { id: 'winter', label: 'Зима' },
+  { id: 'halloween', label: 'Хэллоуин' },
 ];
 
 function applyTheme(theme) {
@@ -63,11 +63,6 @@ function applyBackgroundImage(backgroundImage) {
     backgroundImageOptions[0];
 
   document.body.dataset.bgImage = option.id;
-  if (option.image) {
-    document.body.style.setProperty('--steam-bg-image', `url("${option.image}")`);
-  } else {
-    document.body.style.removeProperty('--steam-bg-image');
-  }
 
   document.querySelectorAll('[data-bg-image-option]').forEach(button => {
     button.classList.toggle('active', button.dataset.bgImageOption === option.id);
@@ -271,7 +266,7 @@ function renderCommunityHub() {
   activity.replaceChildren();
 
   if (totalCount) {
-    totalCount.textContent = communities.length;
+    totalCount.textContent = String(communities.length);
   }
 
   if (filteredCommunities.length === 0) {
@@ -488,7 +483,7 @@ function formatRub(value) {
 function updateCartCounters() {
   const cartCount = loadCart().length;
   document.querySelectorAll('[data-cart-count]').forEach(counter => {
-    counter.textContent = cartCount;
+    counter.textContent = String(cartCount);
     counter.classList.toggle('is-filled', cartCount > 0);
   });
 }
@@ -954,7 +949,7 @@ function renderProfileState() {
     ((state.xp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100,
   );
 
-  document.querySelector('#profileLevel').textContent = level;
+  document.querySelector('#profileLevel').textContent = String(level);
   document.querySelector('#profileXpText').textContent =
     `${state.xp} / ${nextLevelXp} XP до следующего уровня`;
   document.querySelector('#profileXpBar').style.width = `${progress}%`;
@@ -985,7 +980,7 @@ function renderProfileState() {
     const counter = button.querySelector('[data-vote-count]');
     const baseVotes = Number(counter?.dataset.baseVotes || counter?.textContent) || 0;
     if (counter && !counter.dataset.baseVotes) {
-      counter.dataset.baseVotes = baseVotes;
+      counter.dataset.baseVotes = String(baseVotes);
     }
     if (counter) {
       counter.textContent = baseVotes + (state.votes[game] || 0);
