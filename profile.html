@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaben-профиль | Steam 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a class="active-link" href="profile.html">Профиль</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <div class="topbar-actions">
+      <details class="theme-menu">
+        <summary>Фон Steam 2.0</summary>
+        <div class="theme-popover">
+          <div class="theme-picker" aria-label="Выбор цветовой палитры фона">
+            <button class="theme-swatch steam" type="button" data-theme-option="steam" aria-label="Синяя палитра Steam"></button>
+            <button class="theme-swatch neon" type="button" data-theme-option="neon" aria-label="Неоновая палитра"></button>
+            <button class="theme-swatch forest" type="button" data-theme-option="forest" aria-label="Зеленая палитра"></button>
+            <button class="theme-swatch ember" type="button" data-theme-option="ember" aria-label="Теплая палитра"></button>
+            <button class="theme-swatch violet" type="button" data-theme-option="violet" aria-label="Фиолетовая палитра"></button>
+          </div>
+          <label class="theme-motion-toggle">
+            <input type="checkbox" data-motion-toggle checked>
+            <span>Анимация фона</span>
+          </label>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main class="page-shell profile-page buyer-profile-page gaben-page merged-gaben-profile">
+    <section class="profile-hero">
+      <div class="profile-card">
+        <div class="profile-avatar buyer-avatar">
+          <span>VC</span>
+          <i></i>
+        </div>
+        <div>
+          <span class="eyebrow">Профиль покупателя</span>
+          <h1>Покупать можно. Запускать не обязательно.</h1>
+          <p>
+            Профиль и Gaben Mode теперь живут вместе: здесь видно баланс,
+            пыльную библиотеку, подарки, историю покупок и сразу сам режим
+            виртуальной распродажи.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#gaben-mode">К распродаже</a>
+            <a class="secondary-link" href="#buyer-achievements">К ачивкам</a>
+          </div>
+        </div>
+      </div>
+      <aside class="level-card buyer-balance-card">
+        <span>Виртуальный баланс</span>
+        <strong id="profileVirtualBalance">10000 VC</strong>
+        <p>Пополняется подарками Гейба, ежедневным бонусом и ачивками.</p>
+        <div class="profile-wallet">
+          <b id="profileVirtualLibraryCount">0</b>
+          <small>игр куплено в режиме</small>
+        </div>
+      </aside>
+    </section>
+
+    <section class="buyer-stat-grid">
+      <article>
+        <span>Пыльная библиотека</span>
+        <strong id="profileDustCount">0</strong>
+        <p>игр без единого запуска</p>
+      </article>
+      <article>
+        <span>Входы подряд</span>
+        <strong id="profileLoginStreak">1</strong>
+        <p>для ачивки верного клиента</p>
+      </article>
+      <article>
+        <span>Потрачено всего</span>
+        <strong id="profileTotalSpent">0 VC</strong>
+        <p>виртуальных денег</p>
+      </article>
+      <article>
+        <span>Подарки Гейба</span>
+        <strong id="profileGiftCount">0</strong>
+        <p>получено благословений</p>
+      </article>
+    </section>
+
+    <section class="profile-grid">
+      <article id="buyer-achievements" class="profile-panel achievements-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Ачивки покупателя</span>
+            <h2>Достижения за привычки настоящего охотника за скидками</h2>
+          </div>
+        </div>
+        <div id="profileBuyerAchievements" class="achievement-list buyer-achievement-list"></div>
+      </article>
+
+      <aside class="profile-panel buyer-story-panel">
+        <span class="eyebrow">Поведение</span>
+        <h2 id="profileBuyerTitle">Пока спокойно</h2>
+        <p id="profileBuyerStory">
+          Купи первую виртуальную игру, чтобы профиль начал считать твой путь.
+        </p>
+        <div class="profile-xp-bar"><i id="profileBuyerProgress"></i></div>
+      </aside>
+    </section>
+
+    <section id="gaben-mode" class="gaben-hero merged-gaben-hero">
+      <div>
+        <span class="eyebrow">Виртуальная распродажа</span>
+        <h1>Gaben Mode</h1>
+        <p>
+          Режим для тех, кто любит купить на распродаже и никогда не
+          запустить. Деньги ненастоящие, азарт почти настоящий.
+        </p>
+        <div class="sale-countdown">
+          <span>Sale заканчивается через</span>
+          <strong id="saleCountdown">02:00:00</strong>
+        </div>
+        <div class="sale-push-notice">
+          successная распродажа заканчивается через 2 часа!
+        </div>
+      </div>
+      <aside class="gaben-wallet-card">
+        <span>Баланс режима</span>
+        <strong id="virtualBalance">10000 VC</strong>
+        <p>виртуальных денег</p>
+        <button id="dailyBonusButton" class="secondary-button" type="button">Ежедневный бонус</button>
+      </aside>
+    </section>
+
+    <section class="gaben-layout">
+      <div>
+        <section class="profile-panel sale-catalog-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Скидки до -90%</span>
+              <h2>Импульсивные покупки</h2>
+            </div>
+            <div id="virtualCartSummary" class="virtual-cart-summary">0 товаров</div>
+          </div>
+          <div id="virtualSaleCatalog" class="virtual-sale-catalog"></div>
+        </section>
+
+        <section class="profile-panel marketplace-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Marketplace</span>
+              <h2>Продать лишнее, купить чужое</h2>
+            </div>
+          </div>
+          <form id="marketSellForm" class="market-sell-form">
+            <label>
+              Игра из виртуальной библиотеки
+              <select id="marketGameSelect"></select>
+            </label>
+            <label>
+              Цена
+              <input id="marketPriceInput" type="number" min="1" value="500">
+            </label>
+            <button class="primary-button" type="submit">Выставить</button>
+          </form>
+          <div id="marketListings" class="market-listings"></div>
+        </section>
+      </div>
+
+      <aside class="gaben-sidebar">
+        <section class="profile-panel virtual-cart-panel">
+          <span class="eyebrow">Корзина</span>
+          <h2>Оплата понарошку</h2>
+          <div id="virtualCartItems" class="virtual-cart-items"></div>
+          <div class="virtual-total-row">
+            <span>Итого</span>
+            <strong id="virtualCartTotal">0 VC</strong>
+          </div>
+          <button id="virtualBuyButton" class="primary-button" type="button">Купить</button>
+          <p id="virtualCheckoutStatus">Игры попадут в виртуальную библиотеку.</p>
+        </section>
+
+        <section class="profile-panel gaben-gift-panel">
+          <span class="eyebrow">Gaben gift</span>
+          <h2>Случайный подарок</h2>
+          <div id="gabenGiftBox" class="gaben-gift-box">
+            <img src="gaben-steam.gif" alt="Gaben">
+          </div>
+          <button id="gabenGiftButton" class="secondary-button" type="button">Открыть подарок</button>
+          <p id="gabenGiftStatus">Раз в день Гейб может благословить валютой, игрой или купоном.</p>
+        </section>
+
+        <section class="profile-panel achievements-panel">
+          <span class="eyebrow">Ачивки</span>
+          <h2>Покупательские привычки</h2>
+          <div id="gabenAchievements" class="achievement-list buyer-achievement-list"></div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="profile-grid">
+      <article class="profile-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Последние покупки</span>
+            <h2>Куплено и аккуратно забыто</h2>
+          </div>
+        </div>
+        <div id="profileRecentPurchases" class="buyer-history-list"></div>
+      </article>
+
+      <aside class="profile-panel">
+        <span class="eyebrow">Gaben gifts</span>
+        <h2>История благословений</h2>
+        <div id="profileGabenHistory" class="buyer-history-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

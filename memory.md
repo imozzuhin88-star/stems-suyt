@@ -11,6 +11,8 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 - `shop.html`: Steam-like store catalog shown as full-width game rows with real Steam game names, Steam CDN capsule covers, filters, prices, and Flatbub Core status.
 - `cart.html`: Steam-like cart page that renders games saved from the store, shows total price, bonus card progress, removal controls, and checkout state.
 - `library.html`: Steam-like interactive library with a left game list, selected game hero, play/favorite controls, activity feed, and per-game saved notes.
+- `profile.html`: merged Gaben profile page with buyer stats plus the full virtual purchase mode: sale catalog, virtual balance, cart checkout, daily bonus, Gaben gifts, marketplace listings, purchase/gift history, login streak, and buyer achievements without fake playtime/rank data.
+- `gaben-mode.html`: compatibility redirect to `profile.html#gaben-mode` after Gaben Mode was merged into the profile page.
 - `analytics.html`: user analytics page with a yearly Wrapped-style report, charts, comparison with platform averages, and a custom input form that calculates a result.
 - `social.html`: Steam-like community activity hub. It lists only user-created communities from browser storage, supports search, and creates new communities.
 - `community.html`: dynamic separate community room opened by `?id=...`; each saved community has its own chat, member count, and progress checklist.
@@ -20,7 +22,7 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 
 - `style.css`: shared Steam-inspired styling for all active pages, including analytics panels, charts, existing-community/chat pages, store list rows, hover animations, holiday background animation scenes, and the animated global background.
 - `style2.css`: compatibility stylesheet that imports `style.css`.
-- `script.js`: analytics result handler, saved background theme palette, saved background animation scene, motion toggle, store filtering, localStorage-backed cart, and localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress saving.
+- `script.js`: analytics result handler, saved background theme palette, saved background animation scene, motion toggle, store filtering, localStorage-backed cart, Gaben Mode virtual purchases/balance/gifts/marketplace/buyer achievements, buyer profile rendering, and localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress saving.
 - `.codex/skills/stems-suyt/`: local project skill and reference notes for future Codex work.
 
 ## Project Rules
@@ -39,6 +41,7 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 
 ## Recent Changes
 
+- Fixed the `shop.html` header so the cart link stays sticky at the right edge of the store navigation instead of protruding under the background menu.
 - Added `shop.html` as the third page.
 - Reworked navigation to include `Главная`, `Информация`, and `Магазин`.
 - Updated `script.js` so it avoids failing when `.cards` is absent.
@@ -57,3 +60,8 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 - Added generated animation-scene controls to the header dropdown: waves, winter trees, Halloween pumpkins, Easter eggs, and arcade/random movement.
 - Disabled interface animations inside the library page while keeping its interactions.
 - Fixed background scene visibility by placing `body::before` and `body::after` above the base body background while keeping page content on a higher z-index.
+- Replaced the old profile/gamification page with a buyer profile driven by Gaben Mode: virtual balance, dusty library, purchase/gift history, login streak, and buyer-behavior achievements.
+- Added Gaben Mode mechanics: virtual sale purchases, a cart and checkout flow, 10,000 VC starting balance, daily bonus, Gaben gift opening, marketplace listings, sale countdown, and requested achievements for duplicate buys, dusty libraries, sale sprees, spending the full balance, and 7-day return visits.
+- Merged Gaben Mode into `profile.html`; `gaben-mode.html` now redirects to `profile.html#gaben-mode`, and the separate Gaben Mode navigation item was removed so users enter it through the profile.
+- Adjusted shared header navigation so menu items, including the cart link, stay on a single horizontal line with internal scrolling on narrow screens.
+- Added image background choices inside the shared `Фон Steam 2.0` menu: desert, winter, and Halloween images copied into the project as `background-desert.png`, `background-winter.png`, and `background-halloween.png`; the choice is saved in localStorage under `steam2BackgroundImage`.

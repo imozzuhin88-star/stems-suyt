@@ -1,6 +1,7 @@
 const themeStorageKey = 'steam2Theme';
 const motionStorageKey = 'steam2Motion';
 const sceneStorageKey = 'steam2Scene';
+const backgroundImageStorageKey = 'steam2BackgroundImage';
 
 const sceneOptions = [
   { id: 'waves', label: 'Волны' },
@@ -8,6 +9,13 @@ const sceneOptions = [
   { id: 'halloween', label: 'Тыквы' },
   { id: 'easter', label: 'Пасха' },
   { id: 'arcade', label: 'Аркада' },
+];
+
+const backgroundImageOptions = [
+  { id: 'none', label: 'Без картинки', image: '' },
+  { id: 'desert', label: 'Пустыня', image: 'background-desert.png' },
+  { id: 'winter', label: 'Зима', image: 'background-winter.png' },
+  { id: 'halloween', label: 'Хэллоуин', image: 'background-halloween.png' },
 ];
 
 function applyTheme(theme) {
@@ -19,6 +27,52 @@ function applyTheme(theme) {
 }
 
 applyTheme(localStorage.getItem(themeStorageKey) || 'steam');
+
+function renderBackgroundImageControls() {
+  document.querySelectorAll('.theme-popover').forEach(popover => {
+    if (popover.querySelector('.background-image-picker')) {
+      return;
+    }
+
+    const imagePicker = document.createElement('div');
+    imagePicker.className = 'background-image-picker';
+    imagePicker.setAttribute('aria-label', 'Выбор картинки заднего фона');
+    imagePicker.innerHTML = `
+      <span>Картинка фона</span>
+      <div class="background-image-options">
+        ${backgroundImageOptions
+          .map(
+            option => `
+              <button class="background-image-option ${option.id}" type="button" data-bg-image-option="${option.id}">
+                <i></i>
+                <span>${option.label}</span>
+              </button>
+            `,
+          )
+          .join('')}
+      </div>
+    `;
+
+    popover.insertBefore(imagePicker, popover.querySelector('.theme-motion-toggle'));
+  });
+}
+
+function applyBackgroundImage(backgroundImage) {
+  const option =
+    backgroundImageOptions.find(item => item.id === backgroundImage) ||
+    backgroundImageOptions[0];
+
+  document.body.dataset.bgImage = option.id;
+  if (option.image) {
+    document.body.style.setProperty('--steam-bg-image', `url("${option.image}")`);
+  } else {
+    document.body.style.removeProperty('--steam-bg-image');
+  }
+
+  document.querySelectorAll('[data-bg-image-option]').forEach(button => {
+    button.classList.toggle('active', button.dataset.bgImageOption === option.id);
+  });
+}
 
 function renderSceneControls() {
   document.querySelectorAll('.theme-popover').forEach(popover => {
@@ -53,6 +107,8 @@ function applyScene(scene) {
   });
 }
 
+renderBackgroundImageControls();
+applyBackgroundImage(localStorage.getItem(backgroundImageStorageKey) || 'none');
 renderSceneControls();
 applyScene(localStorage.getItem(sceneStorageKey) || 'waves');
 
@@ -70,6 +126,13 @@ document.querySelectorAll('[data-theme-option]').forEach(button => {
   button.addEventListener('click', () => {
     localStorage.setItem(themeStorageKey, button.dataset.themeOption);
     applyTheme(button.dataset.themeOption);
+  });
+});
+
+document.querySelectorAll('[data-bg-image-option]').forEach(button => {
+  button.addEventListener('click', () => {
+    localStorage.setItem(backgroundImageStorageKey, button.dataset.bgImageOption);
+    applyBackgroundImage(button.dataset.bgImageOption);
   });
 });
 
@@ -837,3 +900,884 @@ function initLibraryPage() {
 }
 
 initLibraryPage();
+
+const profileStorageKey = 'steam2ProfileState';
+const defaultProfileState = {
+  xp: 1240,
+  coins: 320,
+  frame: 'steam',
+  claimedChestDate: '',
+  challenges: {},
+  votes: {},
+};
+
+function loadProfileState() {
+  try {
+    const savedState = JSON.parse(localStorage.getItem(profileStorageKey)) || {};
+
+    return {
+      ...defaultProfileState,
+      ...savedState,
+      challenges: {
+        ...defaultProfileState.challenges,
+        ...(savedState.challenges || {}),
+      },
+      votes: {
+        ...defaultProfileState.votes,
+        ...(savedState.votes || {}),
+      },
+    };
+  } catch {
+    return { ...defaultProfileState };
+  }
+}
+
+function saveProfileState(state) {
+  localStorage.setItem(profileStorageKey, JSON.stringify(state));
+}
+
+function getProfileLevel(xp) {
+  return Math.max(1, Math.floor(xp / 120) + 1);
+}
+
+function renderProfileState() {
+  const page = document.querySelector('.profile-page');
+
+  if (!page) return;
+
+  const state = loadProfileState();
+  const level = getProfileLevel(state.xp);
+  const currentLevelXp = (level - 1) * 120;
+  const nextLevelXp = level * 120;
+  const progress = Math.min(
+    100,
+    ((state.xp - currentLevelXp) / (nextLevelXp - currentLevelXp)) * 100,
+  );
+
+  document.querySelector('#profileLevel').textContent = level;
+  document.querySelector('#profileXpText').textContent =
+    `${state.xp} / ${nextLevelXp} XP до следующего уровня`;
+  document.querySelector('#profileXpBar').style.width = `${progress}%`;
+  document.querySelector('#profileCoins').textContent = state.coins;
+
+  const avatar = document.querySelector('.profile-avatar');
+  const frameStatus = document.querySelector('#profileFrameStatus');
+
+  if (avatar) {
+    avatar.dataset.frame = state.frame;
+  }
+
+  document.querySelectorAll('[data-frame-option]').forEach(button => {
+    const isActive = button.dataset.frameOption === state.frame;
+    button.classList.toggle('active', isActive);
+  });
+
+  if (frameStatus) {
+    frameStatus.textContent = `Активна рамка ${state.frame}.`;
+  }
+
+  document.querySelectorAll('[data-challenge]').forEach(input => {
+    input.checked = Boolean(state.challenges[input.dataset.challenge]);
+  });
+
+  document.querySelectorAll('[data-wishlist-vote]').forEach(button => {
+    const game = button.dataset.wishlistVote;
+    const counter = button.querySelector('[data-vote-count]');
+    const baseVotes = Number(counter?.dataset.baseVotes || counter?.textContent) || 0;
+    if (counter && !counter.dataset.baseVotes) {
+      counter.dataset.baseVotes = baseVotes;
+    }
+    if (counter) {
+      counter.textContent = baseVotes + (state.votes[game] || 0);
+    }
+  });
+}
+
+function addProfileReward({ xp = 0, coins = 0 }) {
+  const state = loadProfileState();
+  state.xp += xp;
+  state.coins += coins;
+  saveProfileState(state);
+  renderProfileState();
+}
+
+function initProfilePage() {
+  if (!document.querySelector('.profile-page:not(.buyer-profile-page)')) return;
+
+  renderProfileState();
+
+  document.querySelectorAll('[data-achievement-filter]').forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.achievementFilter;
+
+      document
+        .querySelectorAll('[data-achievement-filter]')
+        .forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+
+      document.querySelectorAll('[data-rarity]').forEach(item => {
+        item.classList.toggle(
+          'is-hidden',
+          filter !== 'all' && item.dataset.rarity !== filter,
+        );
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-frame-option]').forEach(button => {
+    button.addEventListener('click', () => {
+      const state = loadProfileState();
+      state.frame = button.dataset.frameOption;
+      saveProfileState(state);
+      renderProfileState();
+    });
+  });
+
+  document.querySelectorAll('[data-challenge]').forEach(input => {
+    input.addEventListener('change', () => {
+      const state = loadProfileState();
+      const wasDone = Boolean(state.challenges[input.dataset.challenge]);
+      state.challenges[input.dataset.challenge] = input.checked;
+
+      if (input.checked && !wasDone) {
+        state.xp += 80;
+        state.coins += 25;
+      }
+
+      saveProfileState(state);
+      renderProfileState();
+    });
+  });
+
+  document.querySelectorAll('[data-wishlist-vote]').forEach(button => {
+    button.addEventListener('click', () => {
+      const state = loadProfileState();
+      const game = button.dataset.wishlistVote;
+      state.votes[game] = (state.votes[game] || 0) + 1;
+      state.xp += 10;
+      saveProfileState(state);
+      renderProfileState();
+    });
+  });
+
+  document.querySelector('#dailyChestButton')?.addEventListener('click', () => {
+    const state = loadProfileState();
+    const today = new Date().toLocaleDateString('ru-RU');
+    const status = document.querySelector('#dailyChestStatus');
+
+    if (state.claimedChestDate === today) {
+      if (status) {
+        status.textContent = 'Сегодняшний сундук уже открыт. Возвращайся завтра.';
+      }
+      return;
+    }
+
+    state.claimedChestDate = today;
+    state.coins += 50;
+    state.xp += 35;
+    saveProfileState(state);
+    renderProfileState();
+
+    if (status) {
+      status.textContent = '+50 FlatCoins и +35 XP за вход сегодня.';
+    }
+  });
+
+  document.querySelector('#profileAiForm')?.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const mood = document.querySelector('#profileMoodInput').value;
+    const time = Number(document.querySelector('#profileTimeInput').value);
+    const result = document.querySelector('#profileAiResult');
+    const recommendations = {
+      story: time >= 180 ? 'Red Dead Redemption 2' : 'Cyberpunk 2077',
+      coop: time >= 90 ? 'Sea of Thieves' : 'Phasmophobia',
+      short: time >= 90 ? 'Hades II' : 'Portal 2',
+    };
+
+    result.innerHTML = `
+      <strong>${recommendations[mood]}</strong>
+      <p>Подборка учитывает настроение, доступное время и игры, которые уже есть в Steam 2.0.</p>
+    `;
+
+    addProfileReward({ xp: 15, coins: 5 });
+  });
+}
+
+initProfilePage();
+
+const virtualModeStorageKey = 'steam2VirtualMode';
+const virtualSaleGames = [
+  ['cyberpunk-2077', 'Cyberpunk 2077', 2999, 599, 80, 'https://cdn.akamai.steamstatic.com/steam/apps/1091500/capsule_231x87.jpg'],
+  ['baldurs-gate-3', "Baldur's Gate 3", 2499, 1249, 50, 'https://cdn.akamai.steamstatic.com/steam/apps/1086940/capsule_231x87.jpg'],
+  ['elden-ring', 'ELDEN RING', 2999, 899, 70, 'https://cdn.akamai.steamstatic.com/steam/apps/1245620/capsule_231x87.jpg'],
+  ['portal-2', 'Portal 2', 259, 26, 90, 'https://cdn.akamai.steamstatic.com/steam/apps/620/capsule_231x87.jpg'],
+  ['stardew-valley', 'Stardew Valley', 399, 159, 60, 'https://cdn.akamai.steamstatic.com/steam/apps/413150/capsule_231x87.jpg'],
+  ['sea-of-thieves', 'Sea of Thieves', 1499, 449, 70, 'https://cdn.akamai.steamstatic.com/steam/apps/1172620/capsule_231x87.jpg'],
+  ['phasmophobia', 'Phasmophobia', 599, 239, 60, 'https://cdn.akamai.steamstatic.com/steam/apps/739630/capsule_231x87.jpg'],
+  ['fallout-new-vegas', 'Fallout: New Vegas', 399, 79, 80, 'https://cdn.akamai.steamstatic.com/steam/apps/22380/capsule_231x87.jpg'],
+].map(([id, title, price, salePrice, discount, image]) => ({
+  id,
+  title,
+  price,
+  salePrice,
+  discount,
+  image,
+}));
+
+const buyerAchievements = [
+  ['forgot', 'Забыл, что купил', 'Купить игру, которая уже лежит в виртуальной библиотеке.', 'Rare', 1, 300, state => state.duplicateBuys],
+  ['dust', 'Коллекционер пыли', 'Собрать 10 игр без единого запуска.', 'Epic', 10, 700, state => state.library.filter(game => !game.launched).length],
+  ['sale-victim', 'Жертва распродажи', 'Купить 5 игр за один день скидок.', 'Epic', 5, 500, state => state.purchasesToday],
+  ['spender', 'Транжира', 'Потратить весь баланс одной оплатой.', 'Legendary', 1, 1000, state => state.spentAllClicks],
+  ['loyal', 'Верный клиент Гейба', 'Заходить на сайт 7 дней подряд.', 'Legendary', 7, 777, state => state.loginStreak],
+].map(([id, title, description, rarity, goal, reward, progress]) => ({
+  id,
+  title,
+  description,
+  rarity,
+  goal,
+  reward,
+  progress,
+}));
+
+const defaultMarketLots = [
+  {
+    id: 'bot-hades-2',
+    title: 'Hades II',
+    image: 'https://cdn.akamai.steamstatic.com/steam/apps/1145350/capsule_231x87.jpg',
+    price: 640,
+    history: [980, 820, 760, 690, 640],
+  },
+  {
+    id: 'bot-doom-eternal',
+    title: 'DOOM Eternal',
+    image: 'https://cdn.akamai.steamstatic.com/steam/apps/782330/capsule_231x87.jpg',
+    price: 520,
+    history: [700, 620, 590, 540, 520],
+  },
+];
+
+const defaultVirtualModeState = {
+  balance: 10000,
+  cart: [],
+  library: [],
+  history: [],
+  gifts: [],
+  marketListings: [],
+  achievements: {},
+  purchaseDay: '',
+  purchasesToday: 0,
+  totalSpent: 0,
+  duplicateBuys: 0,
+  spentAllClicks: 0,
+  loginStreak: 0,
+  lastVisitDate: '',
+  lastGiftDate: '',
+  lastBonusDate: '',
+  coupon: 0,
+};
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function loadVirtualModeState() {
+  try {
+    const savedState =
+      JSON.parse(localStorage.getItem(virtualModeStorageKey)) || {};
+    return {
+      ...defaultVirtualModeState,
+      ...savedState,
+      cart: savedState.cart || [],
+      library: savedState.library || [],
+      history: savedState.history || [],
+      gifts: savedState.gifts || [],
+      marketListings: savedState.marketListings || [],
+      achievements: savedState.achievements || {},
+    };
+  } catch {
+    return { ...defaultVirtualModeState };
+  }
+}
+
+function saveVirtualModeState(state) {
+  localStorage.setItem(virtualModeStorageKey, JSON.stringify(state));
+}
+
+function formatVirtualMoney(value) {
+  return `${Number(value).toLocaleString('ru-RU')} VC`;
+}
+
+function virtualGame(id) {
+  return virtualSaleGames.find(game => game.id === id);
+}
+
+function isPreviousDay(previous, current) {
+  if (!previous) return false;
+  const date = new Date(`${previous}T00:00:00`);
+  date.setDate(date.getDate() + 1);
+  return date.toISOString().slice(0, 10) === current;
+}
+
+function prepareVirtualState() {
+  const state = loadVirtualModeState();
+  const today = todayKey();
+
+  if (state.lastVisitDate !== today) {
+    state.loginStreak = isPreviousDay(state.lastVisitDate, today)
+      ? state.loginStreak + 1
+      : 1;
+    state.lastVisitDate = today;
+  }
+
+  if (state.purchaseDay !== today) {
+    state.purchaseDay = today;
+    state.purchasesToday = 0;
+  }
+
+  unlockBuyerAchievements(state);
+  saveVirtualModeState(state);
+  return state;
+}
+
+function virtualCartTotal(state) {
+  const subtotal = state.cart.reduce((sum, id) => {
+    const game = virtualGame(id);
+    return sum + (game?.salePrice || 0);
+  }, 0);
+
+  return state.coupon > 0
+    ? Math.round(subtotal * ((100 - state.coupon) / 100))
+    : subtotal;
+}
+
+function addVirtualHistory(state, text, type = 'purchase') {
+  state.history.unshift({
+    id: `${type}-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    type,
+    text,
+    date: new Date().toLocaleString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    }),
+  });
+  state.history = state.history.slice(0, 16);
+}
+
+function addVirtualLibraryGame(state, game, source = 'purchase') {
+  state.library.unshift({
+    instanceId: `${game.id}-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    id: game.id,
+    title: game.title,
+    image: game.image,
+    source,
+    launched: false,
+    boughtAt: Date.now(),
+  });
+}
+
+function unlockBuyerAchievements(state) {
+  buyerAchievements.forEach(achievement => {
+    const progress = achievement.progress(state);
+    if (progress < achievement.goal || state.achievements[achievement.id]) {
+      return;
+    }
+
+    state.achievements[achievement.id] = {
+      unlockedAt: Date.now(),
+      reward: achievement.reward,
+    };
+    state.balance += achievement.reward;
+    addVirtualHistory(
+      state,
+      `Ачивка "${achievement.title}" открыта. Бонус: ${formatVirtualMoney(
+        achievement.reward,
+      )}.`,
+      'achievement',
+    );
+  });
+}
+
+function renderBuyerAchievements(container, state) {
+  if (!container) return;
+
+  container.replaceChildren();
+
+  buyerAchievements.forEach(achievement => {
+    const progress = Math.min(achievement.goal, achievement.progress(state));
+    const unlocked = Boolean(state.achievements[achievement.id]);
+    const item = document.createElement('article');
+    item.className = `achievement-item ${unlocked ? 'is-unlocked' : ''}`;
+    item.innerHTML = `
+      <span>${achievement.rarity}</span>
+      <strong>${achievement.title}</strong>
+      <p>${achievement.description}</p>
+      <div><i style="width: ${(progress / achievement.goal) * 100}%"></i></div>
+      <small>${
+        unlocked
+          ? `Открыто, бонус ${formatVirtualMoney(achievement.reward)}`
+          : `${progress} / ${achievement.goal}`
+      }</small>
+    `;
+    container.append(item);
+  });
+}
+
+function renderVirtualCatalog(state) {
+  const catalog = document.querySelector('#virtualSaleCatalog');
+  if (!catalog) return;
+
+  catalog.replaceChildren();
+  virtualSaleGames.forEach(game => {
+    const row = document.createElement('article');
+    row.className = 'virtual-sale-row';
+    row.innerHTML = `
+      <img src="${game.image}" alt="${game.title}">
+      <div>
+        <h3>${game.title}</h3>
+        <p>Было ${formatVirtualMoney(game.price)}. Купи сейчас и, возможно, никогда не запусти.</p>
+      </div>
+      <div class="virtual-price-stack">
+        <span class="virtual-discount">-${game.discount}%</span>
+        <span class="virtual-old-price">${formatVirtualMoney(game.price)}</span>
+        <strong class="virtual-current-price">${formatVirtualMoney(game.salePrice)}</strong>
+        <button type="button" data-virtual-add="${game.id}">${
+          state.cart.includes(game.id) ? 'Еще копию' : 'В виртуальную корзину'
+        }</button>
+      </div>
+    `;
+    catalog.append(row);
+  });
+}
+
+function renderVirtualCart(state) {
+  const list = document.querySelector('#virtualCartItems');
+  const total = document.querySelector('#virtualCartTotal');
+  const summary = document.querySelector('#virtualCartSummary');
+  if (!list || !total) return;
+
+  list.replaceChildren();
+
+  if (state.cart.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'virtual-empty';
+    empty.textContent = 'Корзина пустая. Гейб слегка разочарован.';
+    list.append(empty);
+  } else {
+    state.cart.forEach((id, index) => {
+      const game = virtualGame(id);
+      const item = document.createElement('div');
+      item.className = 'virtual-cart-item';
+      item.innerHTML = `
+        <span>${game?.title || 'Неизвестная игра'}</span>
+        <strong>${formatVirtualMoney(game?.salePrice || 0)}</strong>
+        <button type="button" data-virtual-remove="${index}">x</button>
+      `;
+      list.append(item);
+    });
+  }
+
+  total.textContent = formatVirtualMoney(virtualCartTotal(state));
+  if (summary) {
+    summary.textContent = `${state.cart.length} товаров`;
+    if (state.coupon > 0) summary.textContent += `, купон -${state.coupon}%`;
+  }
+}
+
+function renderMarketListings(state) {
+  const list = document.querySelector('#marketListings');
+  const select = document.querySelector('#marketGameSelect');
+  if (!list || !select) return;
+
+  list.replaceChildren();
+  select.replaceChildren();
+
+  const listed = new Set(state.marketListings.map(lot => lot.instanceId));
+  const sellable = state.library.filter(game => !listed.has(game.instanceId));
+
+  if (sellable.length === 0) {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = 'Нет лишних игр для продажи';
+    select.append(option);
+  } else {
+    sellable.forEach(game => {
+      const option = document.createElement('option');
+      option.value = game.instanceId;
+      option.textContent = game.title;
+      select.append(option);
+    });
+  }
+
+  [...state.marketListings, ...defaultMarketLots].forEach(lot => {
+    const card = document.createElement('article');
+    card.className = 'market-card';
+    card.innerHTML = `
+      <img src="${lot.image}" alt="${lot.title}">
+      <div>
+        <strong>${lot.title}</strong>
+        <span>${formatVirtualMoney(lot.price)}</span>
+        <div class="market-history">
+          ${lot.history
+            .map(
+              value =>
+                `<i style="height: ${Math.max(18, Math.min(100, value / 12))}%"></i>`,
+            )
+            .join('')}
+        </div>
+      </div>
+      <button type="button" data-market-lot="${lot.id}">${
+        lot.owner === 'you' ? 'Продать боту' : 'Купить лот'
+      }</button>
+    `;
+    list.append(card);
+  });
+}
+
+function renderGabenMode() {
+  if (!document.querySelector('.gaben-page')) return;
+
+  const state = prepareVirtualState();
+  const balance = document.querySelector('#virtualBalance');
+  const status = document.querySelector('#virtualCheckoutStatus');
+
+  if (balance) balance.textContent = formatVirtualMoney(state.balance);
+  if (status && state.balance <= 0) {
+    status.textContent = 'Баланс закончился. Забери ежедневный бонус или подарок Гейба.';
+  }
+
+  renderVirtualCatalog(state);
+  renderVirtualCart(state);
+  renderMarketListings(state);
+  renderBuyerAchievements(document.querySelector('#gabenAchievements'), state);
+}
+
+function renderBuyerProfile() {
+  if (!document.querySelector('.buyer-profile-page')) return;
+
+  const state = prepareVirtualState();
+  const unlockedCount = Object.keys(state.achievements).length;
+  const dustCount = state.library.filter(game => !game.launched).length;
+  const setText = (selector, text) => {
+    const element = document.querySelector(selector);
+    if (element) element.textContent = text;
+  };
+
+  setText('#profileVirtualBalance', formatVirtualMoney(state.balance));
+  setText('#profileVirtualLibraryCount', state.library.length);
+  setText('#profileDustCount', dustCount);
+  setText('#profileLoginStreak', state.loginStreak);
+  setText('#profileTotalSpent', formatVirtualMoney(state.totalSpent));
+  setText('#profileGiftCount', state.gifts.length);
+  setText(
+    '#profileBuyerTitle',
+    unlockedCount >= 3 ? 'Гейб доволен' : 'Охота только начинается',
+  );
+  setText(
+    '#profileBuyerStory',
+    state.library.length === 0
+      ? 'Купи первую виртуальную игру, чтобы профиль начал считать твой путь.'
+      : `В библиотеке ${state.library.length} игр, из них ${dustCount} еще ни разу не запускались.`,
+  );
+
+  const progress = document.querySelector('#profileBuyerProgress');
+  if (progress) {
+    progress.style.width = `${(unlockedCount / buyerAchievements.length) * 100}%`;
+  }
+
+  renderBuyerAchievements(
+    document.querySelector('#profileBuyerAchievements'),
+    state,
+  );
+  renderBuyerHistory('#profileRecentPurchases', state.history, [
+    'purchase',
+    'market',
+  ]);
+  renderBuyerHistory('#profileGabenHistory', state.gifts);
+}
+
+function renderBuyerHistory(selector, items, types) {
+  const container = document.querySelector(selector);
+  if (!container) return;
+
+  const visibleItems = (types
+    ? items.filter(item => types.includes(item.type))
+    : items
+  ).slice(0, 6);
+
+  container.replaceChildren();
+
+  if (visibleItems.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Пока пусто.';
+    container.append(empty);
+    return;
+  }
+
+  visibleItems.forEach(item => {
+    const row = document.createElement('article');
+    row.innerHTML = `<strong>${item.text}</strong><span>${item.date}</span>`;
+    container.append(row);
+  });
+}
+
+function refreshVirtualViews() {
+  renderGabenMode();
+  renderBuyerProfile();
+}
+
+function buyVirtualCart() {
+  const state = prepareVirtualState();
+  const status = document.querySelector('#virtualCheckoutStatus');
+  const total = virtualCartTotal(state);
+
+  if (state.cart.length === 0) {
+    if (status) status.textContent = 'Сначала добавь игру в корзину.';
+    return;
+  }
+
+  if (total > state.balance) {
+    if (status) {
+      status.textContent =
+        'Не хватает виртуальных денег. Попробуй ежедневный бонус или подарок Гейба.';
+    }
+    return;
+  }
+
+  const duplicateBought = state.cart.some(id =>
+    state.library.some(game => game.id === id),
+  );
+  const titles = [];
+
+  if (duplicateBought) state.duplicateBuys += 1;
+  if (state.balance - total === 0) state.spentAllClicks += 1;
+
+  state.balance -= total;
+  state.totalSpent += total;
+  state.purchasesToday += state.cart.length;
+
+  state.cart.forEach(id => {
+    const game = virtualGame(id);
+    if (!game) return;
+    titles.push(game.title);
+    addVirtualLibraryGame(state, game);
+  });
+
+  state.cart = [];
+  state.coupon = 0;
+  addVirtualHistory(
+    state,
+    `Куплено: ${titles.join(', ')} за ${formatVirtualMoney(total)}.`,
+  );
+  unlockBuyerAchievements(state);
+  saveVirtualModeState(state);
+  if (status) {
+    status.textContent = 'Покупка прошла. Игры уже пылятся в виртуальной библиотеке.';
+  }
+  refreshVirtualViews();
+}
+
+function openGabenGift() {
+  const state = prepareVirtualState();
+  const today = todayKey();
+  const status = document.querySelector('#gabenGiftStatus');
+  const box = document.querySelector('#gabenGiftBox');
+
+  if (state.lastGiftDate === today) {
+    if (status) status.textContent = 'Гейб уже благословлял тебя сегодня.';
+    return;
+  }
+
+  const gifts = [
+    { type: 'money', amount: 1200 },
+    { type: 'coupon', amount: 40 },
+    { type: 'game', game: virtualSaleGames[3] },
+    { type: 'game', game: virtualSaleGames[7] },
+  ];
+  const gift = gifts[Math.floor(Math.random() * gifts.length)];
+  let text = '';
+
+  state.lastGiftDate = today;
+
+  if (gift.type === 'money') {
+    state.balance += gift.amount;
+    text = `Гейб благословил тебя: ${formatVirtualMoney(gift.amount)}.`;
+  }
+
+  if (gift.type === 'coupon') {
+    state.coupon = Math.max(state.coupon, gift.amount);
+    text = `Гейб выдал купон -${gift.amount}% на следующую корзину.`;
+  }
+
+  if (gift.type === 'game') {
+    addVirtualLibraryGame(state, gift.game, 'gift');
+    text = `Гейб благословил тебя игрой ${gift.game.title}.`;
+  }
+
+  state.gifts.unshift({
+    id: `gift-${Date.now()}`,
+    text,
+    date: new Date().toLocaleString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    }),
+  });
+  state.gifts = state.gifts.slice(0, 12);
+  addVirtualHistory(state, text, 'gift');
+  unlockBuyerAchievements(state);
+  saveVirtualModeState(state);
+
+  if (box) {
+    box.classList.remove('is-opening');
+    window.requestAnimationFrame(() => box.classList.add('is-opening'));
+  }
+  if (status) status.textContent = text;
+  refreshVirtualViews();
+}
+
+function claimDailyBonus() {
+  const state = prepareVirtualState();
+  const today = todayKey();
+  const status = document.querySelector('#virtualCheckoutStatus');
+
+  if (state.lastBonusDate === today) {
+    if (status) status.textContent = 'Ежедневный бонус уже забран.';
+    return;
+  }
+
+  state.lastBonusDate = today;
+  state.balance += 1000;
+  addVirtualHistory(state, 'Ежедневный бонус: +1000 VC.', 'bonus');
+  saveVirtualModeState(state);
+  if (status) status.textContent = 'Ежедневный бонус начислен: +1000 VC.';
+  refreshVirtualViews();
+}
+
+function listMarketGame(event) {
+  event.preventDefault();
+
+  const state = prepareVirtualState();
+  const select = document.querySelector('#marketGameSelect');
+  const price = Number(document.querySelector('#marketPriceInput').value) || 1;
+  const game = state.library.find(item => item.instanceId === select.value);
+
+  if (!game) return;
+
+  state.marketListings.unshift({
+    id: `user-lot-${Date.now()}`,
+    owner: 'you',
+    instanceId: game.instanceId,
+    title: game.title,
+    image: game.image,
+    price,
+    history: [Math.round(price * 1.25), Math.round(price * 1.1), price],
+  });
+  addVirtualHistory(
+    state,
+    `${game.title} выставлена на маркет за ${formatVirtualMoney(price)}.`,
+    'market',
+  );
+  saveVirtualModeState(state);
+  refreshVirtualViews();
+}
+
+function buyMarketLot(lotId) {
+  const state = prepareVirtualState();
+  const status = document.querySelector('#virtualCheckoutStatus');
+  const ownLot = state.marketListings.find(lot => lot.id === lotId);
+  const botLot = defaultMarketLots.find(lot => lot.id === lotId);
+  const lot = ownLot || botLot;
+
+  if (!lot) return;
+
+  if (ownLot) {
+    state.library = state.library.filter(
+      game => game.instanceId !== ownLot.instanceId,
+    );
+    state.marketListings = state.marketListings.filter(
+      item => item.id !== ownLot.id,
+    );
+    state.balance += ownLot.price;
+    addVirtualHistory(state, `Продано на маркете: ${ownLot.title}.`, 'market');
+    saveVirtualModeState(state);
+    refreshVirtualViews();
+    return;
+  }
+
+  if (lot.price > state.balance) {
+    if (status) status.textContent = 'На этот лот не хватает виртуальных денег.';
+    return;
+  }
+
+  state.balance -= lot.price;
+  state.totalSpent += lot.price;
+  addVirtualLibraryGame(state, lot, 'market');
+  addVirtualHistory(state, `Куплен маркет-лот: ${lot.title}.`, 'market');
+  unlockBuyerAchievements(state);
+  saveVirtualModeState(state);
+  refreshVirtualViews();
+}
+
+function initGabenMode() {
+  if (!document.querySelector('.gaben-page')) return;
+
+  renderGabenMode();
+
+  document.querySelector('#virtualSaleCatalog')?.addEventListener('click', event => {
+    const button = event.target.closest('[data-virtual-add]');
+    if (!button) return;
+    const state = prepareVirtualState();
+    state.cart.push(button.dataset.virtualAdd);
+    saveVirtualModeState(state);
+    renderGabenMode();
+  });
+
+  document.querySelector('#virtualCartItems')?.addEventListener('click', event => {
+    const button = event.target.closest('[data-virtual-remove]');
+    if (!button) return;
+    const state = prepareVirtualState();
+    state.cart.splice(Number(button.dataset.virtualRemove), 1);
+    saveVirtualModeState(state);
+    renderGabenMode();
+  });
+
+  document
+    .querySelector('#virtualBuyButton')
+    ?.addEventListener('click', buyVirtualCart);
+  document
+    .querySelector('#gabenGiftButton')
+    ?.addEventListener('click', openGabenGift);
+  document
+    .querySelector('#dailyBonusButton')
+    ?.addEventListener('click', claimDailyBonus);
+  document
+    .querySelector('#marketSellForm')
+    ?.addEventListener('submit', listMarketGame);
+  document.querySelector('#marketListings')?.addEventListener('click', event => {
+    const button = event.target.closest('[data-market-lot]');
+    if (button) buyMarketLot(button.dataset.marketLot);
+  });
+
+  window.setInterval(() => {
+    const countdown = document.querySelector('#saleCountdown');
+    if (!countdown) return;
+    const secondsLeft = 7200 - Math.floor((Date.now() / 1000) % 7200);
+    const hours = String(Math.floor(secondsLeft / 3600)).padStart(2, '0');
+    const minutes = String(Math.floor((secondsLeft % 3600) / 60)).padStart(2, '0');
+    const seconds = String(Math.floor(secondsLeft % 60)).padStart(2, '0');
+    countdown.textContent = `${hours}:${minutes}:${seconds}`;
+  }, 1000);
+}
+
+function initBuyerProfilePage() {
+  if (!document.querySelector('.buyer-profile-page')) return;
+  renderBuyerProfile();
+}
+
+initGabenMode();
+initBuyerProfilePage();
