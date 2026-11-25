@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam 2.0</title>
+  <script type="module" crossorigin src="./assets/script-Dsr-pQUg.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/style-BHv-yTF9.css">
+</head>
+<body>
+  <header class="steam-topbar">
+    <a class="brand" href="index.html">STEAM 2.0</a>
+    <nav class="main-nav">
+      <a class="active-link" href="index.html">Главная</a>
+      <a href="index2..html">Информация</a>
+      <a href="shop.html">Магазин</a>
+      <a href="analytics.html">Аналитика</a>
+      <a href="social.html">Сообщество</a>
+      <a href="library.html">Библиотека</a>
+      <a href="profile.html">Профиль</a>
+      <a class="cart-nav-link" href="cart.html">Корзина <span data-cart-count>0</span></a>
+    </nav>
+    <div class="topbar-actions">
+      <a class="install-link" href="shop.html">Установить</a>
+      <details class="theme-menu">
+        <summary>Фон Steam 2.0</summary>
+        <div class="theme-popover">
+          <div class="theme-picker" aria-label="Выбор цветовой палитры фона">
+            <button class="theme-swatch steam" type="button" data-theme-option="steam" aria-label="Синяя палитра Steam"></button>
+            <button class="theme-swatch neon" type="button" data-theme-option="neon" aria-label="Неоновая палитра"></button>
+            <button class="theme-swatch forest" type="button" data-theme-option="forest" aria-label="Зелёная палитра"></button>
+            <button class="theme-swatch ember" type="button" data-theme-option="ember" aria-label="Тёплая палитра"></button>
+            <button class="theme-swatch violet" type="button" data-theme-option="violet" aria-label="Фиолетовая палитра"></button>
+          </div>
+          <label class="theme-motion-toggle">
+            <input type="checkbox" data-motion-toggle checked>
+            <span>Анимация фона</span>
+          </label>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="home-hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Новая витрина Steam 2.0</span>
+        <h1>Игры, обновления и библиотека в одном живом интерфейсе</h1>
+        <p>
+          Steam 2.0 берет знакомую структуру магазина Steam: крупная витрина,
+          быстрый каталог, рекомендации и новости, но добавляет Flatbub Core
+          для чистых установок и атомарных обновлений.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="shop.html">Перейти в магазин</a>
+          <a class="secondary-link" href="social.html">Сообщество</a>
+        </div>
+      </div>
+
+      <div class="hero-showcase">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/library_hero.jpg" alt="Cyberpunk 2077">
+        <div class="showcase-panel">
+          <span>Сейчас в центре внимания</span>
+          <strong>Cyberpunk 2077</strong>
+          <p>RPG, открытый мир, киберпанк и плотная Steam-витрина.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="steam-strip" aria-label="Быстрые преимущества">
+      <article>
+        <span>01</span>
+        <strong>Единый каталог</strong>
+        <p>Игры, новости и статусы совместимости находятся рядом.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <strong>Flatbub Core</strong>
+        <p>Установка без лишних зависимостей и мусора после удаления.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <strong>Steam Deck Ready</strong>
+        <p>Карточки сразу показывают, где игра запускается лучше всего.</p>
+      </article>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <span class="eyebrow">Рекомендации</span>
+        <h2>Популярное и новое</h2>
+      </div>
+      <a class="text-link" href="shop.html">Смотреть все</a>
+    </section>
+
+    <section class="featured-grid">
+      <article class="feature-card large-card">
+        <img src="./assets/gaben-steam-C9s4a77v.gif" alt="Steam 2.0 news">
+        <div>
+          <span class="tag">Главная новость</span>
+          <h3>Большое обновление интерфейса</h3>
+          <p>
+            Главная страница стала ближе к Steam: крупная витрина, понятная
+            навигация и блоки, которые легко сканировать.
+          </p>
+        </div>
+      </article>
+      <article class="game-tile">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1086940/capsule_231x87.jpg" alt="Baldur's Gate 3">
+        <h3>Baldur's Gate 3</h3>
+        <p>RPG · Кооператив</p>
+        <strong>2499 RUB</strong>
+      </article>
+      <article class="game-tile">
+        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/capsule_231x87.jpg" alt="ELDEN RING">
+        <h3>ELDEN RING</h3>
+        <p>Экшен · Фэнтези</p>
+        <strong>2999 RUB</strong>
+      </article>
+    </section>
+
+    <section class="updates-panel">
+      <div>
+        <span class="eyebrow">Лента обновлений</span>
+        <h2>Что изменилось в Steam 2.0</h2>
+      </div>
+      <div class="update-list">
+        <article>
+          <span>Flatbub Core</span>
+          <p>Игры устанавливаются в изолированную среду и обновляются атомарно.</p>
+        </article>
+        <article>
+          <span>Новая навигация</span>
+          <p>Главная, информация и магазин теперь связаны как единый сервис.</p>
+        </article>
+        <article>
+          <span>Витрина игр</span>
+          <p>Магазин вынесен на отдельную страницу с карточками и фильтрами.</p>
+        </article>
+        <article>
+          <span>Аналитика</span>
+          <p>Wrapped-итоги, траты и сравнение со средней статистикой платформы.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
