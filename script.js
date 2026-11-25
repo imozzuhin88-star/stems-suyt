@@ -146,6 +146,23 @@ document.querySelectorAll('[data-motion-toggle]').forEach(toggle => {
   });
 });
 
+const themeMenu = document.querySelector('.theme-menu');
+
+if (themeMenu) {
+  document.addEventListener('click', event => {
+    if (themeMenu.open && !themeMenu.contains(event.target)) {
+      themeMenu.open = false;
+    }
+  });
+
+  themeMenu.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && themeMenu.open) {
+      themeMenu.open = false;
+      themeMenu.querySelector('summary').focus();
+    }
+  });
+}
+
 const analyticsForm = document.querySelector('#analyticsForm');
 
 if (analyticsForm) {
@@ -537,6 +554,7 @@ function initStoreFilters() {
         const isVisible = filter === 'all' || categories.includes(filter);
 
         row.classList.toggle('is-hidden', !isVisible);
+        row.inert = !isVisible;
         if (isVisible) {
           visibleCount += 1;
         }

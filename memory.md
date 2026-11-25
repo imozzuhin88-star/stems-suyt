@@ -22,6 +22,7 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 
 - `style.css`: shared Steam-inspired styling for all active pages, including analytics panels, charts, existing-community/chat pages, store list rows, hover animations, holiday background animation scenes, and the animated global background.
 - `style2.css`: compatibility stylesheet that imports `style.css`.
+- `vite.config.js`: builds every root HTML entry with relative asset URLs. The unused WebStorm starter assets in `public/` are excluded so its stylesheet cannot shadow the app stylesheet in dev.
 - `script.js`: analytics result handler, saved background theme palette, saved background animation scene, motion toggle, store filtering, localStorage-backed cart, Gaben Mode virtual purchases/balance/gifts/marketplace/buyer achievements, buyer profile rendering, and localStorage-backed community creation, directory rendering, activity feed, per-community chat, member count, and progress saving.
 - `.codex/skills/stems-suyt/`: local project skill and reference notes for future Codex work.
 
@@ -37,11 +38,13 @@ This project is a small static WebStorm/Vite frontend for a playful Steam 2.0 / 
 
 - Check links across all active pages after navigation changes.
 - Run `npm run build` when dependencies are installed.
-- As of the last check, `node_modules` was missing, so `vite` was not available for `npm run build`.
+- Check the built pages as well as the dev server. Use a touch viewport to verify that navigation, theme controls, store filters and cart actions stay reachable.
+- Publish the contents of `dist/` with a `.nojekyll` marker to the GitHub Pages branch `codex/pages`. The editable source is on `master`.
 
 ## Recent Changes
 
 - Fixed the `shop.html` header so the cart link stays sticky at the right edge of the store navigation instead of protruding under the background menu.
+- Adapted the shared navigation, forms, store rows, cart, library, charts, community pages and buyer profile for narrow screens. Vite now packages all pages and their shared script.
 - Added `shop.html` as the third page.
 - Reworked navigation to include `Главная`, `Информация`, and `Магазин`.
 - Updated `script.js` so it avoids failing when `.cards` is absent.

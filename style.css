@@ -19,7 +19,6 @@
 }
 
 body {
-  min-width: 320px;
   min-height: 100vh;
   margin: 0;
   background:
@@ -65,10 +64,6 @@ a {
 }
 
 .steam-topbar {
-  z-index: 50;
-}
-
-.steam-topbar {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -95,7 +90,7 @@ a {
 .main-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: safe center;
   flex: 1 1 auto;
   flex-wrap: nowrap;
   gap: 6px;
@@ -2889,6 +2884,91 @@ p {
   align-self: start;
 }
 
+@media (max-width: 1100px) {
+  .cart-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+  }
+
+  .cart-item {
+    grid-template-columns: 128px minmax(0, 1fr);
+  }
+
+  .cart-item img {
+    width: 128px;
+    height: 72px;
+  }
+
+  .cart-item strong,
+  .cart-remove-button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .library-actionbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  }
+
+  .library-play-button {
+    grid-column: 1 / -1;
+  }
+
+  .library-content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1280px) {
+  .steam-topbar,
+  .site-nav {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px 12px;
+  }
+
+  .steam-topbar {
+    padding: 10px 18px;
+  }
+
+  .site-nav {
+    z-index: 10;
+    margin-bottom: 20px;
+  }
+
+  .main-nav,
+  .nav-links {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 105px), 1fr));
+    gap: 4px;
+    padding: 4px;
+    overflow: visible;
+  }
+
+  .main-nav a,
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 5px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .nav-links .cart-nav-link {
+    position: static;
+    margin-left: 0;
+    box-shadow: none;
+  }
+
+  .library-sidebar {
+    top: 0;
+    height: 100vh;
+  }
+}
+
 @media (max-width: 900px) {
   .home-hero,
   .info-hero,
@@ -2911,8 +2991,10 @@ p {
   .profile-ai-form,
   .gaben-hero,
   .gaben-layout,
-  .market-sell-form {
-    grid-template-columns: 1fr;
+  .market-sell-form,
+  .virtual-sale-row,
+  .market-card {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .featured-grid,
@@ -2925,12 +3007,7 @@ p {
   .cart-recommendation-grid,
   .community-preview-grid,
   .buyer-stat-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .virtual-sale-row,
-  .market-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .virtual-price-stack {
@@ -2942,44 +3019,31 @@ p {
     flex-direction: column;
   }
 
-  .cart-item {
-    grid-template-columns: 128px minmax(0, 1fr);
-  }
-
-  .cart-item img {
-    width: 128px;
-    height: 72px;
-  }
-
-  .cart-item strong,
-  .cart-remove-button {
-    grid-column: 2;
-    justify-self: start;
-  }
-
   .library-page {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .library-sidebar {
     position: static;
     height: auto;
-    max-height: 360px;
+    overflow: visible;
+    border-right: 0;
   }
 
-  .library-actionbar,
-  .library-content-grid,
-  .library-tabs {
-    grid-template-columns: 1fr;
-  }
-
-  .library-actionbar {
-    align-items: stretch;
+  .library-game-list {
+    max-height: 200px;
+    overflow-y: auto;
   }
 
   .store-row {
     grid-template-columns: 96px minmax(0, 1fr);
     gap: 12px;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .store-row.is-hidden {
+    display: none;
   }
 
   .game-cover {
@@ -2997,41 +3061,198 @@ p {
   .info-hero img {
     min-height: 320px;
   }
+
+  .community-help-panel {
+    position: static;
+  }
 }
 
 @media (max-width: 640px) {
-  .steam-topbar,
-  .site-nav {
-    align-items: center;
-    flex-direction: row;
-    gap: 10px;
-    padding: 12px 14px;
+  .steam-topbar {
+    padding-inline: 12px;
   }
 
-  .main-nav,
-  .nav-links {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+  .brand,
+  .site-nav .logo {
+    font-size: 18px;
   }
 
   .page-shell,
   .container {
-    width: min(100% - 24px, 1180px);
+    width: calc(100% - 24px);
+    padding-block: 20px 42px;
+  }
+
+  .main-nav,
+  .nav-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .main-nav a,
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .hero-copy,
+  .analytics-panel,
+  .social-panel,
+  .community-form,
+  .community-hub-hero > div,
+  .member-card,
+  .timeline,
+  .library-panel,
+  .profile-card,
+  .profile-panel,
+  .level-card,
+  .gaben-hero > div,
+  .gaben-wallet-card {
+    padding: 16px;
+  }
+
+  .home-hero,
+  .info-hero,
+  .analytics-hero,
+  .social-hero,
+  .community-hub-hero,
+  .community-room-hero,
+  .community-hub-hero > div,
+  .profile-card,
+  .gaben-hero > div,
+  .chat-panel {
+    min-height: 0;
+  }
+
+  h1,
+  .profile-card h1,
+  .gaben-hero h1 {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.05;
+  }
+
+  .profile-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .hero-showcase,
+  .info-hero img {
+    min-height: 220px;
+  }
+
+  .store-info h2,
+  .cart-item h2 {
+    font-size: 18px;
+  }
+
+  .store-meta {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .store-meta .cart-add-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .filter-btn,
+  .cart-add-button,
+  .cart-remove-button,
+  .chat-form button,
+  .analytics-input-form button,
+  .virtual-sale-row button,
+  .virtual-cart-item button,
+  .market-card button {
+    min-height: 44px;
+  }
+
+  .cart-item {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .cart-item img {
+    width: 80px;
+    height: 56px;
+  }
+
+  .library-actionbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-inline: 12px;
+  }
+
+  .library-hero-banner {
+    height: clamp(150px, 44vw, 240px);
+  }
+
+  .library-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: 12px;
+  }
+
+  .library-content-grid,
+  .library-activity,
+  .library-notes {
+    margin-inline: 12px;
+  }
+
+  .panel-head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .community-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .community-card b {
+    grid-column: 2;
   }
 
   .timeline article {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .bar-chart {
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 8px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 12px 5px;
+    height: 320px;
+  }
+
+  .bar-chart div {
+    gap: 4px;
+  }
+
+  .bar-chart div::before {
+    flex-shrink: 1;
   }
 
   .chat-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
+
+  .community-search,
+  .community-form input,
+  .community-form select,
+  .community-form textarea,
+  .analytics-input-form input,
+  .chat-form input,
+  .cart-summary-card select,
+  .library-search,
+  .library-notes textarea,
+  .market-sell-form input,
+  .market-sell-form select {
+    min-width: 0;
+    font-size: max(16px, 1rem);
+  }
+}
+
+.community-card,
+.activity-card,
+.community-room-hero,
+.chat-messages {
+  overflow-wrap: anywhere;
 }
 
 body[data-theme="steam"] {
@@ -3793,31 +4014,46 @@ body.library-static .theme-menu[open] summary {
   transform: none !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1280px) {
   .topbar-actions {
-    width: auto;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
   }
 
-  .theme-menu {
-    width: min(100%, 280px);
-  }
-
+  .install-link,
   .theme-menu summary {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    min-height: 44px;
+    padding: 5px 8px;
+    text-align: center;
+    white-space: normal;
   }
 
   .theme-popover {
-    left: 50%;
-    right: auto;
-    width: min(280px, calc(100vw - 28px));
-    transform: translateX(-50%);
+    width: min(280px, calc(100vw - 36px));
+    max-height: calc(100vh - 76px);
+    max-height: calc(100svh - 76px);
+    overflow-y: auto;
   }
 
   .background-lab {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .install-link,
+  .theme-menu summary {
+    font-size: 11px;
+  }
+
+  .theme-menu .theme-swatch,
+  .scene-option {
+    min-height: 44px;
   }
 }
 
